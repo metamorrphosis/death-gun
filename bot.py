@@ -63,5 +63,5 @@ def load_extensions():
             print(f'"{filename[:-3]}" загружен')
 
 
-load_extensions()
+# load_extensions()
 main_bot.run(os.getenv('BOT_TOKEN'))
