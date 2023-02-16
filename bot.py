@@ -47,6 +47,19 @@ class MainBot(commands.Bot):
     async def get_context(self, message: discord.Message, *, cls = ExpandedContext):
         return await super().get_context(message, cls = cls)
    
+   async def on_ready(self):
+       print(f'{self.user} | {self.user.id} - запущен' \
+               f'Пинг: {int(self.latency * 100)} мс' \
+               f'Кол-во выгруженных файлов: {len(self.bot.extensions)}, когов: {len(self.bot.cogs)}' \
+               '————————————————————')
+       
+       await self.bot.change_presence(activity=discord.Game(name=f'{os.getenv("BOT_PREFIX")}help'), status = discord.Status.dnd)
+   
+   def load_extensions(self):
+       for filename in os.listdir('./cogs'):
+           if filename.endswith('.py'):
+               main_bot.load_extension(f'cogs.{filename[:-3]}')
+               print(f'"{filename[:-3]}" загружен')
 
 bot_intents = discord.Intents.all()
 
@@ -55,12 +68,6 @@ main_bot = MainBot(
     command_prefix = commands.when_mentioned_or(os.getenv('BOT_PREFIX'))
 )
 main_bot.remove_command('help')
-
-def load_extensions():
-    for filename in os.listdir('./cogs'):
-        if filename.endswith('.py'):
-            main_bot.load_extension(f'cogs.{filename[:-3]}')
-            print(f'"{filename[:-3]}" загружен')
 
 
 # load_extensions()
