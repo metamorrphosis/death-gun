@@ -47,7 +47,7 @@ jobs:
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=120 --statistics
       - name: Run code coverage with pytest
         run: |
-          coverage run -m pytest
+          coverage run bot.py -m pytest
           coverage xml
       - name: Upload code coverage to codecov.io
         uses: codecov/codecov-action@v3
