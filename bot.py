@@ -44,6 +44,12 @@ class ExpandedContext(commands.Context):
 
 
 class MainBot(commands.Bot):
+    def __init__(self, *args, **kwargs):
+        super().__init__(
+            intents = discord.Intents.all(),
+            command_prefix = os.getenv('BOT_PREFIX')
+        )
+    
     async def get_context(self, message: discord.Message, *, cls = ExpandedContext):
         return await super().get_context(message, cls = cls)
    
@@ -58,17 +64,13 @@ class MainBot(commands.Bot):
    def load_extensions(self):
        for filename in os.listdir('./cogs'):
            if filename.endswith('.py'):
-               main_bot.load_extension(f'cogs.{filename[:-3]}')
+               self.load_extension(f'cogs.{filename[:-3]}')
                print(f'"{filename[:-3]}" загружен')
 
-bot_intents = discord.Intents.all()
 
-main_bot = MainBot(
-    intents = bot_intents, 
-    command_prefix = commands.when_mentioned_or(os.getenv('BOT_PREFIX'))
-)
+main_bot = MainBot()
 main_bot.remove_command('help')
 
 
-# load_extensions()
+# main_bot.load_extensions()
 main_bot.run(os.getenv('BOT_TOKEN'))
