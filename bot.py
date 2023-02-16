@@ -64,4 +64,4 @@ def load_extensions():
 
 
 # load_extensions()
-main_bot.run(os.getenv('BOT_TOKEN'))
+# main_bot.run(os.getenv('BOT_TOKEN'))
