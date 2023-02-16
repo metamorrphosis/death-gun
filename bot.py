@@ -44,7 +44,7 @@ class ExpandedContext(commands.Context):
 
 
 class MainBot(commands.Bot):
-    async def get_context(self, message: discord.Message, *, cls = MyContext):
+    async def get_context(self, message: discord.Message, *, cls = ExpandedContext):
         return await super().get_context(message, cls = cls)
    
 
