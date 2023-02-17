@@ -6,12 +6,12 @@ class FunCommandsCog(commands.Cog):
         self.bot = bot
     
     @commands.command()
-    @commadns.guild_only()
+    @commands.guild_only()
     @commands.has_guild_permissions( administrator = True )
     async def say(self, ctx, *, args):
         await ctx.message.delete()
         await ctx.send(args)
 
 
-def load(bot):
-    bot.add_Cog(FunCommandsCog(bot))
+def setup(bot):
+    bot.add_cog(FunCommandsCog(bot))

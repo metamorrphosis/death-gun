@@ -53,20 +53,20 @@ class MainBot(commands.Bot):
     async def get_context(self, message: discord.Message, *, cls = ExpandedContext):
         return await super().get_context(message, cls = cls)
    
-   async def on_ready(self):
-       print(f'{self.user} | {self.user.id} - запущен' \
+    async def on_ready(self):
+        print(f'{self.user} | {self.user.id} - запущен' \
                f'Пинг: {int(self.latency * 100)} мс' \
-               f'Кол-во выгруженных файлов: {len(self.bot.extensions)}, когов: {len(self.bot.cogs)}' \
+               f'Кол-во выгруженных файлов: {len(self.extensions)}, когов: {len(self.cogs)}' \
                '————————————————————')
        
-       await self.bot.change_presence(activity=discord.Game(name=f'{os.getenv("BOT_PREFIX")}help'), status = discord.Status.dnd)
+        await self.change_presence(activity=discord.Game(name=f'{os.getenv("BOT_PREFIX")}help'), status = discord.Status.dnd)
    
-   def load_extensions(self):
-       for cog_folder_name in os.listdir('./cogs'):
-        for cog_file_name in os.listdir(f'./cogs/{cog_folder_name}'):
-            if cog_file_name.endswith('.py'):
-                self.load_extension(f'cogs.{cog_file_name[:-3]}')
-                print(f'"{cog_file_name}" загружен')
+    def load_extensions(self):
+        for cog_folder_name in os.listdir('./cogs'):
+            for cog_file_name in os.listdir(f'./cogs/{cog_folder_name}'):
+                if cog_file_name.endswith('.py'):
+                    self.load_extension(f'cogs.{cog_folder_name}.{cog_file_name[:-3]}')
+                    print(f'"{cog_file_name}" загружен')
 
 
 main_bot = MainBot()
