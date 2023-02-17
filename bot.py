@@ -62,15 +62,18 @@ class MainBot(commands.Bot):
        await self.bot.change_presence(activity=discord.Game(name=f'{os.getenv("BOT_PREFIX")}help'), status = discord.Status.dnd)
    
    def load_extensions(self):
-       for filename in os.listdir('./cogs'):
-           if filename.endswith('.py'):
-               self.load_extension(f'cogs.{filename[:-3]}')
-               print(f'"{filename[:-3]}" загружен')
+       for cog_folder_name in os.listdir('./cogs'):
+        for cog_file_name in os.listdir(f'./cogs/{cog_folder_name}'):
+            if cog_file_name.endswith('.py'):
+                self.load_extension(f'cogs.{cog_file_name[:-3]}')
+                print(f'"{cog_file_name}" загружен')
+
 
 main_bot = MainBot()
 main_bot.remove_command('help')
 
 
+'''
 async def clear(self, amout=1000):
     await self.channel.purge(limit=amout)
 
@@ -99,8 +102,8 @@ async def help( self ):
         emb.set_thumbnail(url = self.author.avatar_url)
         emb.add_field( name = '{}info'.format(), value = 'Показать подробную информацию об участнике', inline = False)
         await self.author.send(embed = emb) 
-#Добавляем туда все команды которые сделаем/сделали
+'''
 
 
-# main_bot.load_extensions()
+main_bot.load_extensions()
 main_bot.run(os.getenv('BOT_TOKEN'))
