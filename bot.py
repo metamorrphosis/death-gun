@@ -54,10 +54,10 @@ class MainBot(commands.Bot):
         return await super().get_context(message, cls = cls)
    
     async def on_ready(self):
-        print(f'{self.user} | {self.user.id} - запущен' \
-               f'Пинг: {int(self.latency * 100)} мс' \
-               f'Кол-во выгруженных файлов: {len(self.extensions)}, когов: {len(self.cogs)}' \
-               '————————————————————')
+        print(f'{self.user} | {self.user.id} - запущен\n' \
+               f'Пинг: {int(self.latency * 100)} мс\n' \
+               f'Кол-во выгруженных файлов: {len(self.extensions)}, когов: {len(self.cogs)}\n' \
+               '————————————————————\n')
        
         await self.change_presence(activity=discord.Game(name=f'{os.getenv("BOT_PREFIX")}help'), status = discord.Status.dnd)
    
