@@ -25,7 +25,7 @@ class TechnoCommandsCog(commands.Cog):
     @commands.command()
     @commands.guild_only()
     @commands.has_guild_permissions( administrator = True )
-    async def get-json-embed(self, ctx, message_id: int):
+    async def get_json_embed(self, ctx, message_id: int):
         message = await ctx.channel.fetch_message(message_id)
         for embed in message.embeds:
             print(embed.to_dict())
