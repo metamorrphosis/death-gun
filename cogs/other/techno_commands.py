@@ -21,6 +21,15 @@ class TechnoCommandsCog(commands.Cog):
         for i in ctx.guild.emojis:
             await ctx.send(str(i))
             await ctx.send(f'\{i}')
+     
+    @commands.command()
+    @commands.guild_only()
+    @commands.has_guild_permissions( administrator = True )
+    async def get-json-embed(self, ctx, message_id: int):
+        message = await ctx.channel.fetch_message(message_id)
+        for embed in message.embeds:
+            print(embed.to_dict())
+            print('\n' * 7)
 
 
 def setup(bot):
