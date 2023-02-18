@@ -9,7 +9,7 @@ jobs:
           DAKI_API_TOKEN: ${{ secrets.DAKI_API_TOKEN }}
         run: |
           curl "https://pterodactyl.file.properties/api/client/servers/f29d65b1/power" \
-          -H "Accept:application/json" \
+          -H "Accept:application/vnd.pterodactyl.v1+json" \
           -H "Content-Type:application/json" \
           -H "Authorization:${{ secrets.DAKI_API_TOKEN }}" \
           -X POST \
