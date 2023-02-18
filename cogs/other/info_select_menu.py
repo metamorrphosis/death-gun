@@ -15,7 +15,8 @@ class InfoSelectMenuCog(commands.Cog):
             embed_json = embed_file.read()
         
         parsed_json = json.loads(embed_json)
-        embed = discord.Embed.from_dict(parsed_json)
+        embed = discord.Embed().from_dict(parsed_json)
+        
         await ctx.message.delete()
         await ctx.send(embed = embed)
 
