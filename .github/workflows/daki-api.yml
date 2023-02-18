@@ -10,7 +10,7 @@ jobs:
         run: |
           curl --request POST \
           --url https://pterodactyl.file.properties/api/client/servers/f29d65b1/power \
-          --header 'Authorization: ptlc_RuxyUhGMjyHRm8j1uwvOQZpC6SQruU8EqV5fqLdGk7z' \
-          --header 'accept: application/json' \
-          --header 'content-type: application/json' \
-          --data '{"signal":restart}'
+          --header "Authorization: ptlc_RuxyUhGMjyHRm8j1uwvOQZpC6SQruU8EqV5fqLdGk7z" \
+          --header "accept: application/json" \
+          --header "content-type: application/json" \
+          --data "{"signal":"restart"}"
