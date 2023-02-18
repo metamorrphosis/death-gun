@@ -11,6 +11,15 @@ class FunCommandsCog(commands.Cog):
     async def say(self, ctx, *, args):
         await ctx.message.delete()
         await ctx.send(args)
+    
+    @commands.command()
+    @commands.guild_only()
+    @commands.has_guild_permissions( administrator = True )
+    async def emojis(self, ctx):
+        await ctx.message.delete()
+        for i in ctx.guild.emojis:
+            await ctx.send(str(i))
+            await ctx.send(f'\{i}')
 
 
 def setup(bot):
