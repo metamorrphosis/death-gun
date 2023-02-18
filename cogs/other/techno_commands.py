@@ -16,6 +16,7 @@ class TechnoCommandsCog(commands.Cog):
     @commands.guild_only()
     @commands.has_guild_permissions( administrator = True )
     async def emojis(self, ctx):
+        if ctx.guild.id != 1075448549187256380: return
         await ctx.message.delete()
         for i in ctx.guild.emojis:
             await ctx.send(str(i))
