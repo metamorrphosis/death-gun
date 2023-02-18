@@ -13,4 +13,4 @@ jobs:
           --header "Authorization:ptlc_RuxyUhGMjyHRm8j1uwvOQZpC6SQruU8EqV5fqLdGk7z" \
           --header "accept:application/json" \
           --header "content-type:application/json" \
-          --data "{"signal":"restart"}"
+          --data '{"signal":"restart"}'
