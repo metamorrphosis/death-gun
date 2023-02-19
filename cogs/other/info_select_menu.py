@@ -17,6 +17,10 @@ roles_text6 = {'image': {'url': 'https://cdn.discordapp.com/attachments/10539635
 roles_text7 = {'image': {'url': 'https://cdn.discordapp.com/attachments/1053963528735838220/1076218146505101492/1676660790819.png', 'proxy_url': 'https://media.discordapp.net/attachments/1053963528735838220/1076218146505101492/1676660790819.png', 'width': 756, 'height': 3}, 'fields': [], 'color': 15645576, 'type': 'rich', 'description': '> <:fullstop:1075516281748475904><@&1073959312717774918> - Роль закрывает доступ к серверу, из-за нарушения правил.', 'title': '<:E7168D86A110424CB10DA4441F3BA6CE:1075517714078122106> Роли наказаний.'}
 roles_text8 = {'footer': {'text': '( Для получения интегрированных, ролей для девушек -  обращаться в тикет )'}, 'image': {'url': 'https://cdn.discordapp.com/attachments/1053963528735838220/1076218146505101492/1676660790819.png', 'proxy_url': 'https://media.discordapp.net/attachments/1053963528735838220/1076218146505101492/1676660790819.png', 'width': 756, 'height': 3}, 'fields': [], 'color': 15645576, 'type': 'rich', 'description': '> <:fullstop:1075516281748475904><@&1073939106935099472> - Роль для объединения всех участников.', 'title': '<:E7168D86A110424CB10DA4441F3BA6CE:1075517714078122106> Общая роль.'}
 
+media_picture = {'image': {'url': 'https://cdn.discordapp.com/attachments/1053963528735838220/1075122743466528809/asdx.png', 'proxy_url': 'https://media.discordapp.net/attachments/1053963528735838220/1075122743466528809/asdx.png', 'width': 2000, 'height': 500}, 'fields': [], 'color': 15645576, 'type': 'rich'}
+media_text1 = {'image': {'url': 'https://cdn.discordapp.com/attachments/1053963528735838220/1076218146505101492/1676660790819.png', 'proxy_url': 'https://media.discordapp.net/attachments/1053963528735838220/1076218146505101492/1676660790819.png', 'width': 756, 'height': 3}, 'fields': [], 'color': 15645576, 'type': 'rich', 'title': '<:tochkaicon:1075458720659689533> **Социальные сети Дезгана**'}
+media_text2 = {'fields': [], 'color': 15645576, 'type': 'rich', 'description': '> <:6bfa15ba1afd70d0:1076946632328888382>・[Тикток ДезГана](https://www.tiktok.com/@nahmnenick)\nТак-же тут публикуются новые интересные видео! \n> <:telegram:1076946630667935764>・[Телеграм канал ДезГана](https://t.me/DeathGunOfficial)\nТут публикуются все новости.\n> <:52822eae52500ccf:1076946635046801408>・[Ютуб ДезГана](https://www.youtube.com/@_DeathGun_)\nСамый интересный контент!'}
+
 class InfoSelectMenuCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -69,6 +73,12 @@ class InfoSelectMenuView(discord.ui.View):
                 label = 'Роли',
                 description = 'Информация об основных ролях сервера',
                 emoji = discord.PartialEmoji.from_str('<:tochkaicon:1075458720659689533>')
+            ),
+            discord.SelectOption(
+                value = 'media',
+                label = 'Медиа',
+                description = 'Информация об социальных сетях ДезГана',
+                emoji = discord.PartialEmoji.from_str('<:tochkaicon:1075458720659689533>')
             )
         ]
     )
@@ -91,6 +101,13 @@ class InfoSelectMenuView(discord.ui.View):
                 discord.Embed().from_dict(roles_text7),
                 discord.Embed().from_dict(roles_text8)
                 
+            ]
+            await interaction.response.send_message(embeds = _embeds, ephemeral = True)
+        elif select.values[0] == 'media':
+            _embeds = [
+                discord.Embed().from_dict(media_picture),
+                discord.Embed().from_dict(media_text1),
+                discord.Embed().from_dict(media_text2)
             ]
             await interaction.response.send_message(embeds = _embeds, ephemeral = True)
 
