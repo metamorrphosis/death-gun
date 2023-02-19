@@ -79,6 +79,20 @@ class InfoSelectMenuView(discord.ui.View):
                 discord.Embed().from_dict(entertainment_text)          
             ]
             await interaction.response.send_message(embeds = _embeds, ephemeral = True)
+        elif select.values[0] == 'roles':
+            _embeds = [
+                discord.Embed().from_dict(roles_picture),
+                discord.Embed().from_dict(roles_text1),
+                discord.Embed().from_dict(roles_text2),
+                discord.Embed().from_dict(roles_text3),
+                discord.Embed().from_dict(roles_text4),
+                discord.Embed().from_dict(roles_text5),
+                discord.Embed().from_dict(roles_text6),
+                discord.Embed().from_dict(roles_text7),
+                discord.Embed().from_dict(roles_text8)
+                
+            ]
+            await interaction.response.send_message(embeds = _embeds, ephemeral = True)
 
 
 def setup(bot):
