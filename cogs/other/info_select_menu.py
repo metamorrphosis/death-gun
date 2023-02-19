@@ -21,7 +21,7 @@ class InfoSelectMenuCog(commands.Cog):
             discord.Embed().from_dict(info_text)
         ]
         await ctx.message.delete()
-        await ctx.send(embeds = _embeds, view = InfoSelectMenuView)
+        await ctx.send(embeds = _embeds, view = InfoSelectMenuView())
     
     @commands.Cog.listener()
     async def on_ready(self):
