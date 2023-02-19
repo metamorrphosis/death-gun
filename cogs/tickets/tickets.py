@@ -1,9 +1,11 @@
+from datetime import datetime
+
 import discord
 from discord.commands import option
-import config
-from utils import tickets_db, my_roles
-from datetime import datetime
 from discord.ext import commands
+
+from utils import tickets_db, my_roles
+
 
 class OpenedTicketView(discord.ui.View):
     def __init__(self):
