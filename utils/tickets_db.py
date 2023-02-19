@@ -1,12 +1,17 @@
-from motor.motor_asyncio import AsyncIOMotorClient
-from datetime import datetime, timedelta
+import os
 import asyncio
-import config
+from datetime import datetime, timedelta
+
 import discord
+from dotenv import load_dotenv
+from motor.motor_asyncio import AsyncIOMotorClient
+
+load_dotenv()
+
 
 class TicketsDB:
     def __init__(self):
-        self.cluster = AsyncIOMotorClient(config.mongodb_link)
+        self.cluster = AsyncIOMotorClient(os.getenv('MONGODB_LINK'))
     
     async def insert_ticket(self, *, author, who_claimed = None, open_time):
         await self.cluster["tickets"]["tickets_list"].update_one({"_id": 0}, {"$inc": {"nmr": 1}})
