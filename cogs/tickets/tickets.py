@@ -4,7 +4,7 @@ import discord
 from discord.commands import option
 from discord.ext import commands
 
-from utils import tickets_db, my_roles
+from utils import tickets_db, staff_roles
 
 
 class OpenedTicketView(discord.ui.View):
