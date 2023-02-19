@@ -17,7 +17,7 @@ class InfoSelectMenuCog(commands.Cog):
     @commands.has_guild_permissions( administrator = True )
     async def info_menu(self, ctx):
         _embeds = [
-            discord.Embed().from_dict(info_picturue),
+            discord.Embed().from_dict(info_picture),
             discord.Embed().from_dict(info_text)
         ]
         await ctx.message.delete()
