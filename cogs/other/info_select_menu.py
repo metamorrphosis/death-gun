@@ -41,15 +41,6 @@ class InfoSelectMenuCog(commands.Cog):
         self.bot.add_view(InfoSelectMenuView())
 
 
-    '''
-            discord.SelectOption(
-                value = 'media',
-                label = 'Медиа',
-                description = 'Информация об социальных сетях ДезГана',
-                emoji = discord.PartialEmoji.from_str('<:tochkaicon:1075458720659689533>')
-            )
-            ПОКА ЧТО НЕТУ ХУКА К ЭТОМУ ВАРИАНТУ, ПУСТЬ БУДЕТ В КОМЕНТАРИИ ПОКА ХУК НЕ СДЕЛАЮТ
-    '''
 class InfoSelectMenuView(discord.ui.View):
     def __init__(self):
         super().__init__(
