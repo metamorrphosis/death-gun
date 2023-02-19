@@ -65,7 +65,7 @@ class InfoSelectMenuView(discord.ui.View):
     )
     async def select_callback(self, select, interaction):
         if select.values[0] == 'entertainment':
-            embeds = [
+            _embeds = [
                 discord.Embed().from_dict(entertainment_picture),
                 discord.Embed().from_dict(entertainment_text)          
             ]
