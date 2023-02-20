@@ -24,7 +24,7 @@ class TicketsDB:
         new_ticket["open_time"] = int(open_time)
         await self.cluster["tickets"]["tickets_list"].insert_one(new_ticket)
         guild = author.guild
-        log_channel = guild.get_channel(1017140347983384739)
+        log_channel = guild.get_channel(1073961351115972608)
         emblog = discord.Embed(
             title = 'Тикет открыт',
             color = 0x00ff00,
@@ -67,7 +67,7 @@ class TicketsDB:
         else:
             who_claimed_field = 'Никто'
 
-        log_channel = guild.get_channel(1017140347983384739)
+        log_channel = guild.get_channel(1073961351115972608)
         emblog = discord.Embed(
             title = 'Тикет закрыт',
             color = 0xff0000,
@@ -105,7 +105,7 @@ class TicketsDB:
         await ticket_channel.delete(reason = 'Тикет закрыт')
         
         messages = messages[::-1]
-        fp = f'{__file__[:-19]}tickets/ticket-{ticket_id}-log.txt'
+        fp = f'tickets-log/ticket-{ticket_id}-log.txt'
         with open(fp, 'w+') as f:
             f.write(f'Айди тикета: {ticket_id}\nАвтор тикета: {ticket_db["author"]}\nДата открытия тикета: {datetime.fromtimestamp(ticket_db["open_time"]) + timedelta(hours = 3)} МСК\n\n\n——————— Тикет открыт ———————\n\n')
             for message in messages:
@@ -141,7 +141,7 @@ class TicketsDB:
         ticket_id = self.get_ticket_id(ticket_channel)
         await self.cluster["tickets"]["tickets_list"].update_one({"_id": ticket_id}, {"$set": {"who_claimed": who_claimed.id}})
         guild = ticket_channel.guild
-        log_channel = guild.get_channel(1017140347983384739)
+        log_channel = guild.get_channel(1073961351115972608)
         emblog = discord.Embed(
             title = 'Тикет принят',
             color = 0xffee00,
