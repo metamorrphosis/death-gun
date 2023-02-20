@@ -280,8 +280,9 @@ class TicketsCog(commands.Cog):
         
 
     
-    @commands.Cog.listener()
-    async def on_ready(self):
+    # @commands.Cog.listener()
+    # 
+    async def aeae(self):
         self.bot.add_view(StartTicketView(), message_id = 1032738056182181889)
         self.bot.add_view(OpenedTicketView())
     
