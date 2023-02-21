@@ -73,7 +73,7 @@ class InfoSelectMenuView(discord.ui.View):
             ]
             await interaction.response.send_message(embeds = _embeds, ephemeral = True)
         elif select.values[0] == 'roles':
-            await interaction.response.send_message(embeds = roles_embeds, ephemeral = True)
+            await interaction.response.send_message(embeds = [discord.Embed().from_dict(_dict for _dict in roles_embeds], ephemeral = True)
         elif select.values[0] == 'media':
             _embeds = [
                 discord.Embed().from_dict(media_picture),
