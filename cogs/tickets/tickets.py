@@ -4,7 +4,7 @@ import discord
 from discord.commands import option
 from discord.ext import commands
 
-from utils import tickets_db, 
+from utils import tickets_db
 from utils import staff_roles as staff_roles_utils
 
 
