@@ -143,7 +143,7 @@ class TicketsCog(commands.Cog):
     @commands.has_guild_permissions( administrator = True )
     async def ticket_start(self, ctx):
         await ctx.message.delete()
-        await ctx.send(embeds = start_ticket_embeds, view = StartTicketView())
+        await ctx.send(embeds = [discord.Embed().from_dict(embed_dict) for embed_dict in start_ticket_embeds], view = StartTicketView())
     
     '''
     @slash_group.command(name = 'close', description = 'Закрывает тикет')
