@@ -4,7 +4,8 @@ import discord
 from discord.commands import option
 from discord.ext import commands
 
-from utils import tickets_db, staff_roles_utils
+from utils import tickets_db, 
+from utils import staff_roles as staff_roles_utils
 
 
 start_ticket_embeds = [{'footer': {'text': 'Примечание: при подаче жалобы/вопроса все правила действительны', 'icon_url': 'https://cdn.discordapp.com/attachments/1075455614249086997/1075462392194007070/heart.png', 'proxy_icon_url': 'https://media.discordapp.net/attachments/1075455614249086997/1075462392194007070/heart.png'}, 'image': {'url': 'https://cdn.discordapp.com/attachments/1053963528735838220/1075125783581962280/support.png', 'proxy_url': 'https://media.discordapp.net/attachments/1053963528735838220/1075125783581962280/support.png', 'width': 2000, 'height': 500}, 'fields': [], 'color': 15645576, 'type': 'rich', 'description': '```ㅤㅤС какой целью можно обращаться в поддержку?```\n<:fullstop:1075516281748475904>Задать вопрос касаемый сервера\n\n<:fullstop:1075516281748475904>Задать вопрос касаемый персонала сервера\n\n<:fullstop:1075516281748475904>Пожаловаться на участника/стафф\n\n<:fullstop:1075516281748475904>Сообщить о недочете на сервере', 'title': 'Обращение в поддержку'}, {'image': {'url': 'https://cdn.discordapp.com/attachments/1053963528735838220/1076218146505101492/1676660790819.png', 'proxy_url': 'https://media.discordapp.net/attachments/1053963528735838220/1076218146505101492/1676660790819.png', 'width': 756, 'height': 3}, 'fields': [], 'color': 15645576, 'type': 'rich', 'description': '```ㅤㅤㅤㅤㅤㅤФорма подачи жалобы/вопроса```\n<:fullstop:1075516281748475904> Ваш **Discord ID**\n<:fullstop:1075516281748475904> Ваш вопрос | Что нарушил Администратор/Участник\n<:fullstop:1075516281748475904> **Discord id** Администратора/Участника'}]
