@@ -23,7 +23,7 @@ class OpenedTicketView(discord.ui.View):
     )
     async def claim_callback(self, button, interaction):
         await interaction.response.defer(ephemeral = True, invisible = False)
-        roles_object = my_roles.Roles(interaction.guild)
+        roles_object = staff_roles.Roles(interaction.guild)
         staff_roles = roles_object.get_all_staff_roles()
         check_roles = roles_object.roles_check(
             member = interaction.user,
