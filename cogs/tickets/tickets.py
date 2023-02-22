@@ -23,7 +23,6 @@ class OpenedTicketView(discord.ui.View):
         label = 'Принять тикет'
     )
     async def claim_callback(self, button, interaction):
-        await interaction.response.defer(ephemeral = True, invisible = False)
         roles_object = staff_roles_util.Roles(interaction.guild)
         staff_roles = roles_object.get_all_staff_roles()
         check_roles = roles_object.roles_check(
@@ -35,7 +34,8 @@ class OpenedTicketView(discord.ui.View):
 
         if len(check_roles) == 0:
             return await interaction.followup.send(f'Эта кнопка доступна только для следующих ролей:\n {roles_mention}', ephemeral = True)
-
+        
+        await interaction.response.defer(ephemeral = False, invisible = False)
         self.children[0].disabled = True
         await interaction.message.edit(view = self)
         await interaction.channel.set_permissions(interaction.user, send_messages=True, read_messages=True)
@@ -48,7 +48,7 @@ class OpenedTicketView(discord.ui.View):
             who_claimed = interaction.user
         )
         
-        await interaction.response.send_message(f'{interaction.user.mention} (`{interaction.user}`) Будет обслуживать Ваш тикет')
+        await interaction.followup.send(f'{interaction.user.mention} (`{interaction.user}`) Будет обслуживать Ваш тикет')
         
         for i in staff_roles:
             await interaction.channel.set_permissions(i, send_messages = False)
