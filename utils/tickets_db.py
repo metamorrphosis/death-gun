@@ -124,7 +124,6 @@ class TicketsDB:
             new_member = {}
             new_member["_id"] = member.id
             new_member["all_claimed"] = 0
-            new_member["temp_claimed"] = 0
             await self.cluster["tickets"]["claimed_count"].insert_one(new_member)
             return True
         else:
@@ -137,7 +136,7 @@ class TicketsDB:
        
     async def claim_ticket(self, *, ticket_channel, who_claimed):
         await self.new_claimed_member(who_claimed)
-        await self.cluster["tickets"]["claimed_count"].update_one({"_id": who_claimed.id}, {"$inc": {"all_claimed": 1, "temp_claimed": 1}})
+        await self.cluster["tickets"]["claimed_count"].update_one({"_id": who_claimed.id}, {"$inc": {"all_claimed": 1}})
         ticket_id = self.get_ticket_id(ticket_channel)
         await self.cluster["tickets"]["tickets_list"].update_one({"_id": ticket_id}, {"$set": {"who_claimed": who_claimed.id}})
         guild = ticket_channel.guild
