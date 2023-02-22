@@ -4,7 +4,7 @@ import discord
 from discord.commands import option
 from discord.ext import commands
 
-from utils import tickets_db, staff_roles
+from utils import tickets_db, staff_roles_utils
 
 
 start_ticket_embeds = [{'footer': {'text': 'Примечание: при подаче жалобы/вопроса все правила действительны', 'icon_url': 'https://cdn.discordapp.com/attachments/1075455614249086997/1075462392194007070/heart.png', 'proxy_icon_url': 'https://media.discordapp.net/attachments/1075455614249086997/1075462392194007070/heart.png'}, 'image': {'url': 'https://cdn.discordapp.com/attachments/1053963528735838220/1075125783581962280/support.png', 'proxy_url': 'https://media.discordapp.net/attachments/1053963528735838220/1075125783581962280/support.png', 'width': 2000, 'height': 500}, 'fields': [], 'color': 15645576, 'type': 'rich', 'description': '```ㅤㅤС какой целью можно обращаться в поддержку?```\n<:fullstop:1075516281748475904>Задать вопрос касаемый сервера\n\n<:fullstop:1075516281748475904>Задать вопрос касаемый персонала сервера\n\n<:fullstop:1075516281748475904>Пожаловаться на участника/стафф\n\n<:fullstop:1075516281748475904>Сообщить о недочете на сервере', 'title': 'Обращение в поддержку'}, {'image': {'url': 'https://cdn.discordapp.com/attachments/1053963528735838220/1076218146505101492/1676660790819.png', 'proxy_url': 'https://media.discordapp.net/attachments/1053963528735838220/1076218146505101492/1676660790819.png', 'width': 756, 'height': 3}, 'fields': [], 'color': 15645576, 'type': 'rich', 'description': '```ㅤㅤㅤㅤㅤㅤФорма подачи жалобы/вопроса```\n<:fullstop:1075516281748475904> Ваш **Discord ID**\n<:fullstop:1075516281748475904> Ваш вопрос | Что нарушил Администратор/Участник\n<:fullstop:1075516281748475904> **Discord id** Администратора/Участника'}]
@@ -40,7 +40,7 @@ class OpenedTicketView(discord.ui.View):
         await interaction.channel.set_permissions(interaction.user, send_messages=True, read_messages=True)
 
         ticket_overwrites = {}
-        staff_roles = my_roles.Roles(interaction.guild).get_all_staff_roles()[:6]
+        staff_roles = staff_roles_util.Roles(interaction.guild).get_all_staff_roles()[:6]
     
         await self.db.claim_ticket(
             ticket_channel = interaction.channel,
@@ -61,7 +61,7 @@ class OpenedTicketView(discord.ui.View):
         label = 'Закрыть тикет'
     )
     async def close_callback(self, button, interaction):
-        uroles = my_roles.Roles(interaction.guild)
+        uroles = staff_roles_util.Roles(interaction.guild)
         staff_roles = uroles.get_all_staff_roles()
         check_roles = uroles.roles_check(
             member = interaction.user,
@@ -106,7 +106,7 @@ class StartTicketView(discord.ui.View):
             interaction.user: discord.PermissionOverwrite(read_messages = True, send_messages = True, attach_files = True),
         }
 
-        staff_roles = my_roles.Roles(interaction.guild).get_all_staff_roles()[:6]
+        staff_roles = staff_roles_util.Roles(interaction.guild).get_all_staff_roles()[:6]
 
         if interaction.user.id != 1007615585506566205:
             for i in staff_roles:
@@ -148,7 +148,7 @@ class TicketsCog(commands.Cog):
     '''
     @slash_group.command(name = 'close', description = 'Закрывает тикет')
     async def slash_ticket_close(self, ctx):
-        uroles = my_roles.Roles(ctx.guild)
+        uroles = staff_roles_util.Roles(ctx.guild)
         staff_roles = uroles.get_all_staff_roles()
         check_roles = uroles.roles_check(
             member = ctx.author,
@@ -173,7 +173,7 @@ class TicketsCog(commands.Cog):
     @slash_group.command(name = 'claim', description = 'Принимает тикет')
     async def slash_ticket_claim(self, ctx):
 
-        uroles = my_roles.Roles(ctx.guild)
+        uroles = staff_roles_util.Roles(ctx.guild)
         staff_roles = uroles.get_all_staff_roles()
         check_roles = uroles.roles_check(
             member = ctx.author,
@@ -214,7 +214,7 @@ class TicketsCog(commands.Cog):
         await ctx.send_response(f'{ctx.author.mention} (`{ctx.author}`) Будет обслуживать Ваш тикет')
         
         ticket_overwrites = {}
-        staff_roles = my_roles.Roles(ctx.guild).get_all_staff_roles()[:6]
+        staff_roles = staff_roles_util.Roles(ctx.guild).get_all_staff_roles()[:6]
 
         for i in staff_roles:
             await ctx.channel.set_permissions(i, send_messages = False)
@@ -231,7 +231,7 @@ class TicketsCog(commands.Cog):
     )
     async def slash_ticket_add(self, ctx, member: discord.Member):
 
-        uroles = my_roles.Roles(ctx.guild)
+        uroles = staff_roles_util.Roles(ctx.guild)
         staff_roles = uroles.get_all_staff_roles()
         check_roles = uroles.roles_check(
             member = ctx.author,
@@ -259,7 +259,7 @@ class TicketsCog(commands.Cog):
     )
     async def slash_ticket_remove(self, ctx, member: discord.Member):
 
-        uroles = my_roles.Roles(ctx.guild)
+        uroles = staff_roles_util.Roles(ctx.guild)
         staff_roles = uroles.get_all_staff_roles()
         check_roles = uroles.roles_check(
             member = ctx.author,
