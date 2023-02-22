@@ -59,7 +59,6 @@ class OpenedTicketView(discord.ui.View):
      
             
     @discord.ui.button(
-        emoji = discord.PartialEmoji.from_str(''), 
         style = discord.ButtonStyle.gray,
         custom_id = "ticket_close",
         label = 'Закрыть тикет'
