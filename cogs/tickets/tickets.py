@@ -8,8 +8,11 @@ from utils import tickets_db
 from utils import staff_roles as staff_roles_util
 
 
-start_ticket_embeds = [{'footer': {'text': 'Примечание: при подаче жалобы/вопроса все правила действительны', 'icon_url': 'https://cdn.discordapp.com/attachments/1075455614249086997/1075462392194007070/heart.png', 'proxy_icon_url': 'https://media.discordapp.net/attachments/1075455614249086997/1075462392194007070/heart.png'}, 'image': {'url': 'https://cdn.discordapp.com/attachments/1053963528735838220/1075125783581962280/support.png', 'proxy_url': 'https://media.discordapp.net/attachments/1053963528735838220/1075125783581962280/support.png', 'width': 2000, 'height': 500}, 'fields': [], 'color': 15645576, 'type': 'rich', 'description': '```ㅤㅤС какой целью можно обращаться в поддержку?```\n<:fullstop:1075516281748475904>Задать вопрос касаемый сервера\n\n<:fullstop:1075516281748475904>Задать вопрос касаемый персонала сервера\n\n<:fullstop:1075516281748475904>Пожаловаться на участника/стафф\n\n<:fullstop:1075516281748475904>Сообщить о недочете на сервере', 'title': 'Обращение в поддержку'}, {'image': {'url': 'https://cdn.discordapp.com/attachments/1053963528735838220/1076218146505101492/1676660790819.png', 'proxy_url': 'https://media.discordapp.net/attachments/1053963528735838220/1076218146505101492/1676660790819.png', 'width': 756, 'height': 3}, 'fields': [], 'color': 15645576, 'type': 'rich', 'description': '```ㅤㅤㅤㅤㅤㅤФорма подачи жалобы/вопроса```\n<:fullstop:1075516281748475904> Ваш **Discord ID**\n<:fullstop:1075516281748475904> Ваш вопрос | Что нарушил Администратор/Участник\n<:fullstop:1075516281748475904> **Discord id** Администратора/Участника'}]
-
+start_ticket_embeds = [{'footer': {'text': 'Примечание: при подаче жалобы/вопроса все правила действительны', 'icon_url': 'https://cdn.discordapp.com/attachments/1075455614249086997/1075462392194007070/heart.png', 'proxy_icon_url': 'https://media.discordapp.net/attachments/1075455614249086997/1075462392194007070/heart.png'}, 'image': {'url': 'https://cdn.discordapp.com/attachments/1053963528735838220/1075125783581962280/support.png', 'proxy_url': 'https://media.discordapp.net/attachments/1053963528735838220/1075125783581962280/support.png', 'width': 2000, 'height': 500}, 'fields': [], 'color': 15645576, 'type': 'rich', 'description': '```ㅤㅤС какой целью можно обращаться в поддержку?```\n<:tochkaicon:1075458720659689533> Задать вопрос касаемый сервера\n\n<:tochkaicon:1075458720659689533> Задать вопрос касаемый персонала сервера\n\n<:tochkaicon:1075458720659689533> Пожаловаться на участника/стафф\n\n<:tochkaicon:1075458720659689533> Сообщить о недочете на сервере', 'title': 'Обращение в поддержку'}, {'image': {'url': 'https://cdn.discordapp.com/attachments/1053963528735838220/1076218146505101492/1676660790819.png', 'proxy_url': 'https://media.discordapp.net/attachments/1053963528735838220/1076218146505101492/1676660790819.png', 'width': 756, 'height': 3}, 'fields': [], 'color': 15645576, 'type': 'rich', 
+    'description': '```ㅤㅤㅤㅤㅤㅤФорма подачи жалобы```' \
+    '\n<:tochkaicon:1075458720659689533>Что нарушил Администратор / Участник \n' \
+    '\n<:tochkaicon:1075458720659689533>**ID / никнейм** пользователя который нарушил' \
+    '<:tochkaicon:1075458720659689533>Доказательства нарушения (свидетели, видео/аудио запись, скриншоты и т.д.)'}]
 
 class OpenedTicketView(discord.ui.View):
     def __init__(self):
@@ -56,7 +59,7 @@ class OpenedTicketView(discord.ui.View):
      
             
     @discord.ui.button(
-        emoji = discord.PartialEmoji.from_str('<:asm_stormy_tech:1018512527258304583>'), 
+        emoji = discord.PartialEmoji.from_str(''), 
         style = discord.ButtonStyle.gray,
         custom_id = "ticket_close",
         label = 'Закрыть тикет'
@@ -121,12 +124,7 @@ class StartTicketView(discord.ui.View):
         ticket_channel = await ticket_category.create_text_channel(name = f'тикет-{ticket_id}', overwrites = ticket_overwrites)
         
         mention = await ticket_channel.send(self.mention_message)
-        embticket = discord.Embed(
-            title = f'<:a_notification:1020307597670223922> Открытый тикет',
-            description = f'<:e_white_dot:1018821114853601353>Здравствуйте! Вы попали в свой тикет. Модерация поможет вам в кротчайшие сроки. Пока что можете написать цель создания тикета.\n<:c_level_10:1018512555280453712> Примечание:\n<:e_green_dot:1018821297481994280>За попытки обмана администрации выдаётся предупреждение',
-            color = 0xbffed9
-        )
-        embticket.set_image(url = 'https://cdn.discordapp.com/attachments/1017458641537859604/1018492145335816192/SAVE_20220710_205848.jpg')
+        embticket = discord.Embed().from_dict({'fields': [], 'color': 15645576, 'type': 'rich', 'description': '<:tochkaicon:1075458720659689533>Здравствуйте! Вы попали в свой тикет. Модерация поможет вам в кротчайшие сроки. Пока что можете написать цель создания тикета.\n<:tochkaicon:1075458720659689533>Примечание:\n<:tochkaicon:1075458720659689533>За попытки обмана администрации/модерации выдаётся предупреждение', 'title': '<:gicon2:1075458949089853610> Открытый тикет'})
         await mention.delete() 
         await ticket_channel.send(f'{interaction.user.mention} (`{interaction.user}`)', embed = embticket, view = OpenedTicketView())
         await interaction.followup.send(f'Тикет успешно создан — {ticket_channel.mention}', ephemeral = True)
@@ -228,7 +226,6 @@ class TicketsCog(commands.Cog):
         description = 'Пользователь, которого необходимо добавить в тикет',
         input_type = discord.Member,
         required = True
-        
     )
     async def slash_ticket_add(self, ctx, member: discord.Member):
 
@@ -244,7 +241,7 @@ class TicketsCog(commands.Cog):
         if len(check_roles) == 0:
             return await ctx.send_response(f'Эта команда доступна только для следующих ролей:\n {roles_mention}', ephemeral = True)
 
-        if ctx.channel.category.id != config.tickets_category or ctx.channel.id == config.tickets_channel:
+        if ctx.channel.category.id != 1074053323411431495 or ctx.channel.id == 1074061219750748282:
             return await ctx.send_response('Эта команда доступна только в категории тикетов', ephemeral = True)
         
         await ctx.channel.set_permissions(member, read_messages = True, send_messages = True, attach_files = True)
@@ -272,7 +269,7 @@ class TicketsCog(commands.Cog):
         if len(check_roles) == 0:
             return await ctx.send_response(f'Эта команда доступна только для следующих ролей:\n {roles_mention}', ephemeral = True)
 
-        if ctx.channel.category.id != config.tickets_category or ctx.channel.id == config.tickets_channel:
+        if ctx.channel.category.id != 1074053323411431495 or ctx.channel.id == 1074061219750748282:
             return await ctx.send_response('Эта команда доступна только в категории тикетов', ephemeral = True)
         
         await ctx.channel.set_permissions(member, read_messages = False, send_messages = False, attach_files = False)
