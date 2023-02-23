@@ -48,7 +48,7 @@ class TechnoCommandsCog(commands.Cog):
     @commands.command()
     @commands.guild_only()
     @commands.has_guild_permissions( administrator = True )
-    async def banner(self, ctx, zz: int, yy: int):
+    async def banner(self, ctx):
         image = Image.open('resources/banner.png')
         
         image_draw = ImageDraw.Draw(image)
@@ -59,7 +59,7 @@ class TechnoCommandsCog(commands.Cog):
         image_draw.text((470, 720), str(len(ctx.guild.members)), font = _font)
         
         voice_members = sum([len(voice.members) for voice in ctx.guild.voice_channels])
-        image_draw.text((1500, 730), str(voice_members), font = voice_font)
+        image_draw.text((1490, 710), str(voice_members), font = voice_font)
         
         image.save('resources/temp_banner.png', format='PNG')
         
