@@ -48,14 +48,14 @@ class TechnoCommandsCog(commands.Cog):
     @commands.command()
     @commands.guild_only()
     @commands.has_guild_permissions( administrator = True )
-    async def banner(self, ctx):
+    async def banner(self, ctx, zz: int, yy: int):
         image = Image.open('resources/banner.png')
         
         image_draw = ImageDraw.Draw(image)
         
-        _font = ImageFont.truetype('resources/BacknotesRegular.otf', size = 50)
+        _font = ImageFont.truetype('resources/BacknotesRegular.otf', size = 175)
         
-        image_draw.text((100, 100), 'abcd', font = _font)
+        image_draw.text((zz, yy), 'abcd', font = _font)
         
         image.save('resources/temp_banner.png', format='PNG')
         
