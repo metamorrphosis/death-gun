@@ -59,7 +59,7 @@ class TechnoCommandsCog(commands.Cog):
         image_draw.text((470, 720), str(len(ctx.guild.members)), font = _font)
         
         voice_members = sum([len(voice.members) for voice in ctx.guild.voice_channels])
-        image_draw.text((1500, 730), str(voice_members), font = _font)
+        image_draw.text((1500, 730), str(voice_members), font = voice_font)
         
         image.save('resources/temp_banner.png', format='PNG')
         
