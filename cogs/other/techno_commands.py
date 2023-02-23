@@ -1,6 +1,9 @@
+import io
+
 import discord
 import psutil
 from discord.ext import commands
+from PIL import Image, ImageFont, ImageDraw
 
 class TechnoCommandsCog(commands.Cog):
     def __init__(self, bot):
@@ -43,7 +46,16 @@ class TechnoCommandsCog(commands.Cog):
                 discord.EmbedField(name = 'Бот был запущен', value = f'<t:{self.bot.uptime}:F>')
             ]
             await ctx.neutral_reply(fields = _fields)
-
+    
+    @commands.command()
+    @commands.guild_only()
+    @commands.has_guild_permissions( administrator = True )
+    async def banner(self, ctx):
+        image = Image.open('resources/banner.png')
+        saved_image = io.BytesIO()
+        image.save(saved_image, format='PNG')
+        
+        await ctx.send(file = discord.File(fp = saved_image))
 
 def setup(bot):
     bot.add_cog(TechnoCommandsCog(bot))
