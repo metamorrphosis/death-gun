@@ -9,7 +9,7 @@ class TechnoCommandsCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
     
-    @tasks.loop(seconds = 120)
+    @tasks.loop(seconds = 100)
     async def banner_update(self):
         guild = self.bot.get_guild(921653080607559681)
         image = Image.open('resources/banner.png')
