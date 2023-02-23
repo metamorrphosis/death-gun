@@ -36,7 +36,7 @@ class OpenedTicketView(discord.ui.View):
         roles_mention = ', '.join(role.mention for role in staff_roles)
 
         if len(check_roles) == 0:
-            return await interaction.followup.send(f'Эта кнопка доступна только для следующих ролей:\n {roles_mention}', ephemeral = True)
+            return await interaction.response.send_message(f'Эта кнопка доступна только для следующих ролей:\n {roles_mention}', ephemeral = True)
         
         await interaction.response.defer(ephemeral = False, invisible = False)
         self.children[0].disabled = True
