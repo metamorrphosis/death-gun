@@ -7,6 +7,24 @@ class TechnoCommandsCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
     
+    @tasks.loop(seconds = 90)
+    async def update_banner(self):
+        guild = self.bot.get_guild(921653080607559681)
+        image = Image.open('resources/banner.png')
+        
+        image_draw = ImageDraw.Draw(image)
+        
+        _font = ImageFont.truetype('resources/BacknotesRegular.otf', size = 200)
+        voice_font = ImageFont.truetype('resources/BacknotesRegular.otf', size = 320)
+        
+        image_draw.text((470, 720), str(len(guild.members)), font = _font)
+        
+        voice_members = sum([len(voice.members) for voice in guild.voice_channels])
+        image_draw.text((1490, 660), str(voice_members), font = voice_font)
+        
+        image.save('resources/temp_banner.png', format='PNG')
+        
+        
     @commands.command()
     @commands.guild_only()
     @commands.has_guild_permissions( administrator = True )
