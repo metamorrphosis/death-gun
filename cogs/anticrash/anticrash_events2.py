@@ -145,7 +145,7 @@ class AnticrashEventsCog2(commands.Cog):
         
         if not(str(user.id) in self.cd_channels):
             self.cd_channels[str(user.id)] = {}
-            self.cd_channels[str(user.id)]["last_u"] = 0
+            self.cd_channels[str(user.id)]["last_update"] = 0
             self.cd_channels[str(user.id)]["count"] = 0
         
         if int(datetime.timestamp(datetime.now())) - self.cd_channels[str(user.id)]["last_update"] > 7200:
