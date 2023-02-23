@@ -51,14 +51,14 @@ class TechnoCommandsCog(commands.Cog):
     async def banner(self, ctx, zz: int, yy: int):
         image = Image.open('resources/banner.png')
         
-        _font = ImageFont.truetype('resources/BacknotesRegular.otf', size = 175)
+        image_draw = ImageDraw.Draw(image)
         
-        temp = Image.new('RGBA', (500,200), (0,0,0,0))
-        temp_draw = ImageDraw.Draw(temp)
-        temp_draw.text((0, 0), '10930', font = _font)
-        temp.rotate(90, expand = 1)
+        _font = ImageFont.truetype('resources/BacknotesRegular.otf', size = 210)
         
-        image.paste(temp, (zz, yy), temp)
+        image_draw.text((470, 730), str(len(ctx.guild.members)), font = _font)
+        
+        voice_members = sum([len(voice.members) for voice in ctx.guild.voice_channels])
+        image_draw.text((zz, yy), str(voice_members), font = _font)
         
         image.save('resources/temp_banner.png', format='PNG')
         
