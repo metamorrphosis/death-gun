@@ -51,11 +51,14 @@ class TechnoCommandsCog(commands.Cog):
     async def banner(self, ctx, zz: int, yy: int):
         image = Image.open('resources/banner.png')
         
-        image_draw = ImageDraw.Draw(image)
-        
         _font = ImageFont.truetype('resources/BacknotesRegular.otf', size = 175)
         
-        image_draw.text((zz, yy), 'abcd', font = _font)
+        temp = Image.new('RGBA', (500,200), (0,0,0,0))
+        temp_draw = ImageDraw.Draw(temp)
+        temp_draw.text((0, 0), '10930', font = _font)
+        temp.rotate(30)
+        
+        image.paste(temp, (zz, yy), temp)
         
         image.save('resources/temp_banner.png', format='PNG')
         
