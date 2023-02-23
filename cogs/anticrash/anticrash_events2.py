@@ -14,7 +14,8 @@ class AnticrashEventsCog2(commands.Cog):
             1076195979751067771, # qqsky + dg (owner)
             983675453988544532, # dg
             1075867179137900584, # dg bot (self.bot.user.id)
-            708616355024207884 # akemi
+            708616355024207884, # akemi
+            310848622642069504 # JuniperBot 
         ]
         self.admin_channel = 1053963528735838220
     
