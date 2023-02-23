@@ -54,6 +54,7 @@ class TechnoCommandsCog(commands.Cog):
         image = Image.open('resources/banner.png')
         saved_image = io.BytesIO()
         image.save(saved_image, format='PNG')
+        saved_image = saved_image.getvalue()
         
         await ctx.send(file = discord.File(fp = saved_image))
 
