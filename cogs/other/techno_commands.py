@@ -1,5 +1,3 @@
-import io
-
 import discord
 import psutil
 from discord.ext import commands
@@ -55,9 +53,9 @@ class TechnoCommandsCog(commands.Cog):
         
         image_draw = ImageDraw.Draw(image)
         
-        font = ImageFont.truetype('resources/BacknotesRegular.otf', size = 50)
+        _font = ImageFont.truetype('resources/BacknotesRegular.otf', size = 50)
         
-        image_draw.text((100, 100), 'abcd', font)
+        image_draw.text((100, 100), 'abcd', font = _font)
         
         image.save('resources/temp_banner.png', format='PNG')
         
