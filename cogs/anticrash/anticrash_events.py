@@ -1,3 +1,5 @@
+import asyncio
+
 import discord
 from discord.ext import commands
 from datetime import datetime, timedelta
@@ -45,6 +47,7 @@ class AnticrashEventsCog(commands.Cog):
                 after_adm_roles += 1
         
         if after_adm_roles > before_adm_roles:
+            await asyncio.sleep(2)
             logs = await after.guild.audit_logs(limit = 1, action = discord.AuditLogAction.member_role_update).flatten()
             logs = logs[0]
             user = logs.user
