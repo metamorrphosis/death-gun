@@ -1,4 +1,5 @@
 import discord
+import psutil
 from discord.ext import commands
 
 class TechnoCommandsCog(commands.Cog):
@@ -30,7 +31,18 @@ class TechnoCommandsCog(commands.Cog):
         message = await ctx.channel.fetch_message(message_id)
         print()
         print([embed.to_dict() for embed in message.embeds])
-     
+    
+    @commands.command(aliases = ['ботстатистика', 'ботс', 'ботстат'])
+    @commands.guild_only()
+    async def bot_stats(self, ctx): 
+        async with ctx.channel.typing(): 
+            CPU = psutil.cpu_percent(interval = 2) 
+            _fields = [
+                discord.EmbedField(name = 'CPU', value = f'{CPU} %'),
+                discord.EmbedField(name = 'Пинг', value = f'{int(self.bot.latency * 1000)} мс'),
+                discord.EmbedField(name = 'Бот был запущен', value = f'<t:{self.bot.uptime}:F>')
+            ]
+            await ctx.neutral_reply(fields = _fields)
 
 
 def setup(bot):
