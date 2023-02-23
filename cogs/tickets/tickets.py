@@ -54,7 +54,7 @@ class OpenedTicketView(discord.ui.View):
         await interaction.followup.send(f'{interaction.user.mention} (`{interaction.user}`) Будет обслуживать Ваш тикет')
         
         for i in staff_roles:
-            await interaction.channel.set_permissions(i, send_messages = False)
+            await interaction.channel.set_permissions(i, read_messages = True, send_messages = False)
         
      
             
