@@ -1,3 +1,5 @@
+import io
+
 import discord
 import psutil
 from discord.ext import commands, tasks
@@ -23,7 +25,10 @@ class TechnoCommandsCog(commands.Cog):
         image_draw.text((1490, 660), str(voice_members), font = voice_font)
         
         # image.save('resources/temp_banner.png', format='PNG')
-        await guild.edit(banner = image.tobytes())
+        saved_image = io.BytesIO()
+        image.save(saved_image, format = 'PNG')
+        saved_image = saved_image.getvalue(
+        await guild.edit(banner = saved_image)
         
     @commands.command()
     @commands.guild_only()
