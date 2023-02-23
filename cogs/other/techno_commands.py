@@ -8,7 +8,7 @@ class TechnoCommandsCog(commands.Cog):
         self.bot = bot
     
     @tasks.loop(seconds = 90)
-    async def update_banner(self):
+    async def banner_update(self):
         guild = self.bot.get_guild(921653080607559681)
         image = Image.open('resources/banner.png')
         
@@ -82,6 +82,10 @@ class TechnoCommandsCog(commands.Cog):
         image.save('resources/temp_banner.png', format='PNG')
         
         await ctx.reply(file = discord.File(fp = 'resources/temp_banner.png'))
+    
+    @commands.Cog.listener()
+    async def on_ready(self):
+        self.banner_update.start()
 
 def setup(bot):
     bot.add_cog(TechnoCommandsCog(bot))
