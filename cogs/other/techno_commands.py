@@ -53,9 +53,15 @@ class TechnoCommandsCog(commands.Cog):
     async def banner(self, ctx):
         image = Image.open('resources/banner.png')
         
+        image_draw = ImageDraw.Draw(image)
+        
+        font = ImageFont.truetype('resources/BacknotesRegular.otf', size = 50)
+        
+        image_draw.text((100, 100), 'abcd', font)
+        
         image.save('resources/temp_banner.png', format='PNG')
         
-        await ctx.send(file = discord.File(fp = 'resources/temp_banner.png'))
+        await ctx.reply(file = discord.File(fp = 'resources/temp_banner.png'))
 
 def setup(bot):
     bot.add_cog(TechnoCommandsCog(bot))
