@@ -12,7 +12,8 @@ class AnticrashEventsCog2(commands.Cog):
             659728796437708800, # qqsky
             971749397262127144, #tamada
             1076195979751067771, # qqsky + dg (owner)
-            983675453988544532 # dg
+            983675453988544532, # dg
+            bot.user.id
         ]
         self.admin_channel = 1053963528735838220
     
