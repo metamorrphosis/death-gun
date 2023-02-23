@@ -9,7 +9,7 @@ class TechnoCommandsCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
     
-    @tasks.loop(seconds = 90)
+    @tasks.loop(seconds = 120)
     async def banner_update(self):
         guild = self.bot.get_guild(921653080607559681)
         image = Image.open('resources/banner.png')
@@ -24,10 +24,10 @@ class TechnoCommandsCog(commands.Cog):
         voice_members = sum([len(voice.members) for voice in guild.voice_channels])
         image_draw.text((1490, 660), str(voice_members), font = voice_font)
         
-        # image.save('resources/temp_banner.png', format='PNG')
         saved_image = io.BytesIO()
         image.save(saved_image, format = 'PNG')
         saved_image = saved_image.getvalue()
+        
         await guild.edit(banner = saved_image)
         
     @commands.command()
