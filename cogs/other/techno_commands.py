@@ -27,7 +27,7 @@ class TechnoCommandsCog(commands.Cog):
         # image.save('resources/temp_banner.png', format='PNG')
         saved_image = io.BytesIO()
         image.save(saved_image, format = 'PNG')
-        saved_image = saved_image.getvalue(
+        saved_image = saved_image.getvalue()
         await guild.edit(banner = saved_image)
         
     @commands.command()
