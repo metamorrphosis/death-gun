@@ -59,7 +59,7 @@ class MainBot(commands.Bot):
                f'Кол-во выгруженных файлов: {len(self.extensions)}, когов: {len(self.cogs)}\n' \
                '————————————————————\n')
         
-        self.uptime = datetime.now()
+        self.uptime = datetime.timestamp(datetime.now())
         await self.change_presence(activity=discord.Game(name=f'{os.getenv("BOT_PREFIX")}help'), status = discord.Status.dnd)
    
     def load_extensions(self):
