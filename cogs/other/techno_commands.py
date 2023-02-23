@@ -34,7 +34,7 @@ class TechnoCommandsCog(commands.Cog):
     
     @commands.command(aliases = ['ботстатистика', 'ботс', 'ботстат'])
     @commands.guild_only()
-    async def bot_stats(self, ctx): 
+    async def stats_bot(self, ctx): 
         async with ctx.channel.typing(): 
             CPU = psutil.cpu_percent(interval = 2) 
             _fields = [
