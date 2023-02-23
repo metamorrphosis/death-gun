@@ -52,9 +52,8 @@ class TechnoCommandsCog(commands.Cog):
     @commands.has_guild_permissions( administrator = True )
     async def banner(self, ctx):
         image = Image.open('resources/banner.png')
-        saved_image = io.BytesIO()
+        
         image.save('resources/temp_banner.png', format='PNG')
-        saved_image = saved_image.getvalue()
         
         await ctx.send(file = discord.File(fp = 'resources/temp_banner.png'))
 
