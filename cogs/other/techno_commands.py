@@ -1,6 +1,6 @@
 import discord
 import psutil
-from discord.ext import commands
+from discord.ext import commands, tasks
 from PIL import Image, ImageFont, ImageDraw
 
 class TechnoCommandsCog(commands.Cog):
