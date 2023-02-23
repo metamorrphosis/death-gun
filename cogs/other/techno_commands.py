@@ -53,12 +53,13 @@ class TechnoCommandsCog(commands.Cog):
         
         image_draw = ImageDraw.Draw(image)
         
-        _font = ImageFont.truetype('resources/BacknotesRegular.otf', size = 210)
+        _font = ImageFont.truetype('resources/BacknotesRegular.otf', size = 200)
+        voice_font = ImageFont.truetype('resources/BacknotesRegular.otf', size = 310)
         
-        image_draw.text((470, 730), str(len(ctx.guild.members)), font = _font)
+        image_draw.text((470, 720), str(len(ctx.guild.members)), font = _font)
         
         voice_members = sum([len(voice.members) for voice in ctx.guild.voice_channels])
-        image_draw.text((zz, yy), str(voice_members), font = _font)
+        image_draw.text((1500, 730), str(voice_members), font = _font)
         
         image.save('resources/temp_banner.png', format='PNG')
         
