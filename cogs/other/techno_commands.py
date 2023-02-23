@@ -22,8 +22,8 @@ class TechnoCommandsCog(commands.Cog):
         voice_members = sum([len(voice.members) for voice in guild.voice_channels])
         image_draw.text((1490, 660), str(voice_members), font = voice_font)
         
-        image.save('resources/temp_banner.png', format='PNG')
-        
+        # image.save('resources/temp_banner.png', format='PNG')
+        await guild.edit(banner = image.tobytes())
         
     @commands.command()
     @commands.guild_only()
