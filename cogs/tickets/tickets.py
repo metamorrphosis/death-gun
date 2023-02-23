@@ -89,7 +89,7 @@ class StartTicketView(discord.ui.View):
         super().__init__(timeout = None)
     
     @discord.ui.button(
-        emoji = discord.PartialEmoji.from_str('<:folder_icon:1077767785918234674>'), 
+        emoji = discord.PartialEmoji.from_str('<:dg_ticket:1078235931418574868>'), 
         style = discord.ButtonStyle.gray,
         custom_id = "open_ticket",
         label = 'Открыть тикет'
