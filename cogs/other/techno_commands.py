@@ -56,7 +56,7 @@ class TechnoCommandsCog(commands.Cog):
         temp = Image.new('RGBA', (500,200), (0,0,0,0))
         temp_draw = ImageDraw.Draw(temp)
         temp_draw.text((0, 0), '10930', font = _font)
-        temp.rotate(30)
+        temp.rotate(90, expand = 1)
         
         image.paste(temp, (zz, yy), temp)
         
