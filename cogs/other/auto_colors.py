@@ -35,14 +35,13 @@ class AutoColorsCog(commands.Cog):
                    1074053260622704652
         ]
         for _emoji, role_id in zip(emojis, role_ids):
-            print(_emoji)
             _button = discord.ui.Button(
                 custom_id = str(role_id),
                 style = discord.ButtonStyle.gray,
                 emoji = _emoji
             )
             _button.callback = auto_role
-        await ctx.send(embed = _embed)
+        await ctx.send(embed = _embed, view = _view)
     
     
     @commands.Cog.listener()
