@@ -10,6 +10,19 @@ class AutoColorsView(discord.ui.View):
             timeout = None,
         )
 
+    async def _scheduled_task(self, item: Item, interaction: Interaction):
+        try:
+            if self.timeout:
+                self.__timeout_expiry = time.monotonic() + self.timeout
+
+            allow = await self.interaction_check(interaction)
+            if not allow:
+                return await self.on_check_failure(interaction)
+
+            await item.callback(interaction, item.custon_id)
+        except Exception as e:
+            return await self.on_error(e, item, interaction)
+
 
 class AutoColorsCog(commands.Cog):
     def __init__(self, bot):
@@ -40,7 +53,7 @@ class AutoColorsCog(commands.Cog):
                 style = discord.ButtonStyle.gray,
                 emoji = _emoji
             )
-            _button.callback = auto_role(role_id)
+            _button.callback = auto_role
             _view.add_item(_button)
         await ctx.send(embed = _embed, view = _view)
     
