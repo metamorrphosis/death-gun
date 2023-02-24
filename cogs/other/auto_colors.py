@@ -18,8 +18,8 @@ class AutoColorsView(discord.ui.View):
         custom_id = "1074053302788038788",
         row = 0
     )
-    async def news_role_callback(self, button, interaction):
-        result = await auto_role(interaction.user, interaction.guild.get_role(button.custom_id))
+    async def red(self, button, interaction):
+        result = await auto_role(interaction.user, interaction.guild.get_role(int(button.custom_id)))
         await interaction.response.send_message(result, ephemeral = True)
     
 
@@ -29,8 +29,8 @@ class AutoColorsView(discord.ui.View):
         custom_id = "1074053304457363566",
         row = 0
     )
-    async def news_role_callback(self, button, interaction):
-        result = await auto_role(interaction.user, interaction.guild.get_role(button.custom_id))
+    async def orange(self, button, interaction):
+        result = await auto_role(interaction.user, interaction.guild.get_role(int(button.custom_id)))
         await interaction.response.send_message(result, ephemeral = True)
     
     @discord.ui.button(
@@ -39,8 +39,8 @@ class AutoColorsView(discord.ui.View):
         custom_id = "1074053299747164432", 
         row = 0
     )
-    async def news_role_callback(self, button, interaction):
-        result = await auto_role(interaction.user, interaction.guild.get_role(button.custom_id))
+    async def yellow(self, button, interaction):
+        result = await auto_role(interaction.user, interaction.guild.get_role(int(button.custom_id)))
         await interaction.response.send_message(result, ephemeral = True)
     
     @discord.ui.button(
@@ -49,8 +49,8 @@ class AutoColorsView(discord.ui.View):
         custom_id = "1074053305711464558",
         row = 1
     )
-    async def news_role_callback(self, button, interaction):
-        result = await auto_role(interaction.user, interaction.guild.get_role(button.custom_id))
+    async def green(self, button, interaction):
+        result = await auto_role(interaction.user, interaction.guild.get_role(int(button.custom_id)))
         await interaction.response.send_message(result, ephemeral = True)
     
     @discord.ui.button(
@@ -59,8 +59,8 @@ class AutoColorsView(discord.ui.View):
         custom_id = "1074053528961691750",
         row = 1
     )
-    async def news_role_callback(self, button, interaction):
-        result = await auto_role(interaction.user, interaction.guild.get_role(button.custom_id))
+    async def blue(self, button, interaction):
+        result = await auto_role(interaction.user, interaction.guild.get_role(int(button.custom_id)))
         await interaction.response.send_message(result, ephemeral = True)
     
     @discord.ui.button(
@@ -69,8 +69,8 @@ class AutoColorsView(discord.ui.View):
         custom_id = "1074053306986541156",
         row = 1
     )
-    async def news_role_callback(self, button, interaction):
-        result = await auto_role(interaction.user, interaction.guild.get_role(button.custom_id))
+    async def purple(self, button, interaction):
+        result = await auto_role(interaction.user, interaction.guild.get_role(int(button.custom_id)))
         await interaction.response.send_message(result, ephemeral = True)
     
     @discord.ui.button(
@@ -79,8 +79,8 @@ class AutoColorsView(discord.ui.View):
         custom_id = "1074053260622704652",
         row = 2
     )
-    async def news_role_callback(self, button, interaction):
-        result = await auto_role(interaction.user, interaction.guild.get_role(button.custom_id))
+    async def black(self, button, interaction):
+        result = await auto_role(interaction.user, interaction.guild.get_role(int(button.custom_id)))
         await interaction.response.send_message(result, ephemeral = True)
     
     @discord.ui.button(
@@ -89,8 +89,8 @@ class AutoColorsView(discord.ui.View):
         custom_id = "1074053526612881508",
         row = 2
     )
-    async def news_role_callback(self, button, interaction):
-        result = await auto_role(interaction.user, interaction.guild.get_role(button.custom_id))
+    async def white(self, button, interaction):
+        result = await auto_role(interaction.user, interaction.guild.get_role(int(button.custom_id)))
         await interaction.response.send_message(result, ephemeral = True)
     
     @discord.ui.button(
@@ -99,8 +99,8 @@ class AutoColorsView(discord.ui.View):
         custom_id = "1074053535001497650",
         row = 2
     )
-    async def news_role_callback(self, button, interaction):
-        result = await auto_role(interaction.user, interaction.guild.get_role(button.custom_id))
+    async def pink(self, button, interaction):
+        result = await auto_role(interaction.user, interaction.guild.get_role(int(button.custom_id)))
         await interaction.response.send_message(result, ephemeral = True)
 
 
