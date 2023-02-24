@@ -1,12 +1,10 @@
 import discord
 from datetime import datetime, timedelta
 
-async def auto_role(interaction, role_id):
-    _role = interaction.guild.get_role(int(role_id))
-
-    if _role in interaction.user.roles:
-        await interaction.user.remove_roles(_role)
-        await interaction.response.send_message(f'Успешно снял у вас роль {_role.mention}', ephemeral = True)
+async def auto_role(member: discord.Member, role: discord.Role) -> str:
+    if role in member.roles:
+        await member.remove_roles(role)
+        return f'Успешно снял у вас роль {role.mention}'
     else:
-        await interaction.user.add_roles(_role)
-        await interaction.response.send_message(f'Успешно выдал вам роль {_role.mention}', ephemeral = True)
+        await member.add_roles(role)
+        return f'Успешно выдал вам роль {role.mention}'
