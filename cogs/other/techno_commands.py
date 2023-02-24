@@ -23,9 +23,9 @@ class TechnoCommandsCog(commands.Cog):
         dr = ImageDraw.Draw(temp)
         dr.text((0, 0), str(len(guild.members)), font = _font)
 
-        temp = temp.rotate(-10, expand = 1)
+        temp = temp.rotate(-8, expand = 1)
 
-        image.paste(temp, (470, 720), temp)
+        image.paste(temp, (465, 710), temp)
         
         voice_members = sum([len(voice.members) for voice in guild.voice_channels])
         image_draw.text((1490, 705), str(voice_members), font = voice_font)
