@@ -21,7 +21,7 @@ class AutoColorsView(discord.ui.View):
             if not allow:
                 return await self.on_check_failure(interaction)
 
-            await item.callback(interaction, item.custon_id)
+            await item.callback(interaction, item.custom_id)
         except Exception as e:
             return await self.on_error(e, item, interaction)
 
