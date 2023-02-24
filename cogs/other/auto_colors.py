@@ -12,7 +12,7 @@ class AutoColorsView(discord.ui.View):
             timeout = None,
         )
 
-    async def _scheduled_task(self, item: discord.ui.Item, interaction: discord.ui.Interaction):
+    async def _scheduled_task(self, item: discord.ui.Item, interaction: discord.Interaction):
         try:
             if self.timeout:
                 self.__timeout_expiry = time.monotonic() + self.timeout
