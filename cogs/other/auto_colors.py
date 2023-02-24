@@ -37,7 +37,7 @@ class AutoColorsCog(commands.Cog):
         for _emoji, role_id in zip(emojis, role_ids):
             print(_emoji)
             _button = discord.ui.Button(
-                custom_id = role_id,
+                custom_id = str(role_id),
                 style = discord.ButtonStyle.gray,
                 emoji = _emoji
             )
