@@ -17,7 +17,7 @@ class TechnoCommandsCog(commands.Cog):
         image_draw = ImageDraw.Draw(image)
         
         _font = ImageFont.truetype('resources/BacknotesRegular.otf', size = 200)
-        voice_font = ImageFont.truetype('resources/BacknotesRegular.otf', size = 220)
+        voice_font = ImageFont.truetype('resources/BacknotesRegular.otf', size = 240)
         
         temp = Image.new('RGBA', (500, 200), (0,0,0,0))
         dr = ImageDraw.Draw(temp)
@@ -34,7 +34,7 @@ class TechnoCommandsCog(commands.Cog):
 
         temp_voice = temp_voice.rotate(15, expand = 1)
 
-        image.paste(temp_voice, (1490, 625), temp_voice)
+        image.paste(temp_voice, (1450, 625), temp_voice)
         
         saved_image = io.BytesIO()
         image.save(saved_image, format = 'PNG')
