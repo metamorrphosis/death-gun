@@ -143,7 +143,6 @@ class TicketsCog(commands.Cog):
         await ctx.message.delete()
         await ctx.send(embeds = [discord.Embed().from_dict(embed_dict) for embed_dict in start_ticket_embeds], view = StartTicketView())
     
-    '''
     @slash_group.command(name = 'close', description = 'Закрывает тикет')
     async def slash_ticket_close(self, ctx):
         uroles = staff_roles_util.Roles(ctx.guild)
@@ -168,6 +167,7 @@ class TicketsCog(commands.Cog):
 
         await ctx.send_response('Тикет закрыт')
     
+    '''
     @slash_group.command(name = 'claim', description = 'Принимает тикет')
     async def slash_ticket_claim(self, ctx):
 
