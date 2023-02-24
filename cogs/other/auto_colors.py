@@ -18,7 +18,7 @@ class AutoColorsCog(commands.Cog):
     @commands.command()
     @commands.guild_only()
     @commands.has_guild_permissions( administrator = True )
-    async def colors(self, ctx, *, args):
+    async def colors(self, ctx):
         await ctx.message.delete()
         _embed = discord.Embed().from_dict({'image': {'url': 'https://cdn.discordapp.com/attachments/1053963528735838220/1075127926053404682/colors.png', 'proxy_url': 'https://media.discordapp.net/attachments/1053963528735838220/1075127926053404682/colors.png', 'width': 2000, 'height': 500}, 'fields': [], 'color': 15645576, 'type': 'rich'})
 
