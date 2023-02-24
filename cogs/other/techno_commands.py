@@ -34,7 +34,7 @@ class TechnoCommandsCog(commands.Cog):
 
         temp_voice = temp_voice.rotate(15, expand = 1)
 
-        image.paste(temp_voice, (1490, 645), temp_voice)
+        image.paste(temp_voice, (1490, 625), temp_voice)
         
         saved_image = io.BytesIO()
         image.save(saved_image, format = 'PNG')
