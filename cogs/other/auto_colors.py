@@ -71,7 +71,7 @@ class AutoColorsCog(commands.Cog):
     
     @commands.Cog.listener()
     async def on_ready(self):
-        pass
+        self.bot.add_item(AutoColorsView())
 
 def setup(bot):
     bot.add_cog(AutoColorsCog(bot))
