@@ -22,7 +22,7 @@ class TechnoCommandsCog(commands.Cog):
         image_draw.text((470, 720), str(len(guild.members)), font = _font)
         
         voice_members = sum([len(voice.members) for voice in guild.voice_channels])
-        image_draw.text((1490, 680), str(voice_members), font = voice_font)
+        image_draw.text((1490, 700), str(voice_members), font = voice_font)
         
         saved_image = io.BytesIO()
         image.save(saved_image, format = 'PNG')
