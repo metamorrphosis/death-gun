@@ -19,20 +19,20 @@ class TechnoCommandsCog(commands.Cog):
         _font = ImageFont.truetype('resources/BacknotesRegular.otf', size = 200)
         voice_font = ImageFont.truetype('resources/BacknotesRegular.otf', size = 220)
         
-        temp = Image.new('RGBA', (500,200), (0,0,0,0))
+        temp = Image.new('RGBA', (500, 200), (0,0,0,0))
         dr = ImageDraw.Draw(temp)
         dr.text((0, 0), str(len(guild.members)), font = _font)
 
         temp = temp.rotate(-8, expand = 1)
 
-        image.paste(temp, (465, 700), temp)
+        image.paste(temp, (465, 695), temp)
         
         voice_members = sum([len(voice.members) for voice in guild.voice_channels])
-        temp = Image.new('RGBA', (500,200), (0,0,0,0))
+        temp = Image.new('RGBA', (500, 200), (0,0,0,0))
         dr = ImageDraw.Draw(temp)
         dr.text((0, 0), str(voice_members), font = voice_font)
 
-        temp = temp.rotate(8, expand = 1)
+        temp = temp.rotate(11, expand = 1)
 
         image.paste(temp, (1490, 705), temp)
         
