@@ -25,7 +25,7 @@ class TechnoCommandsCog(commands.Cog):
 
         temp = temp.rotate(-8, expand = 1)
 
-        image.paste(temp, (465, 695), temp)
+        image.paste(temp, (460, 695), temp)
         
         voice_members = sum([len(voice.members) for voice in guild.voice_channels])
         temp_voice = Image.new('RGBA', (500, 200), (0,0,0,0))
