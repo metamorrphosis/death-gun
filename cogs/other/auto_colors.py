@@ -40,7 +40,7 @@ class AutoColorsCog(commands.Cog):
                 style = discord.ButtonStyle.gray,
                 emoji = _emoji
             )
-            _button.callback = auto_role
+            _button.callback = auto_role(role_id)
             _view.add_item(_button)
         await ctx.send(embed = _embed, view = _view)
     
