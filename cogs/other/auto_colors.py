@@ -23,7 +23,7 @@ class AutoColorsCog(commands.Cog):
         _embed = discord.Embed().from_dict({'image': {'url': 'https://cdn.discordapp.com/attachments/1053963528735838220/1075127926053404682/colors.png', 'proxy_url': 'https://media.discordapp.net/attachments/1053963528735838220/1075127926053404682/colors.png', 'width': 2000, 'height': 500}, 'fields': [], 'color': 15645576, 'type': 'rich'})
 
         _view = AutoColorsView()
-        emojis = ['❤️🧡💛💚💙💜💗🤍🖤']
+        emojis = ['❤️', '🧡', '💛', '💚', '💙', '💜', '💗', '🤍', '🖤']
         role_ids = [1074053302788038788,
                    1074053304457363566,
                    1074053299747164432,
@@ -35,6 +35,7 @@ class AutoColorsCog(commands.Cog):
                    1074053260622704652
         ]
         for _emoji, role_id in zip(emojis, role_ids):
+            print(_emoji)
             _button = discord.ui.Button(
                 custom_id = role_id,
                 style = discord.ButtonStyle.gray,
@@ -46,7 +47,7 @@ class AutoColorsCog(commands.Cog):
     
     @commands.Cog.listener()
     async def on_ready(self):
-        self.banner_update.start()
+        pass
 
 def setup(bot):
     bot.add_cog(AutoColorsCog(bot))
