@@ -23,7 +23,7 @@ class TechnoCommandsCog(commands.Cog):
         dr = ImageDraw.Draw(temp)
         dr.text((0, 0), str(len(guild.members)), font = _font)
 
-        temp = temp.rotate(-15, expand = 1)
+        temp = temp.rotate(-10, expand = 1)
 
         image.paste(temp, (470, 720), temp)
         
