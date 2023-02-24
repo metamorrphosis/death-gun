@@ -32,9 +32,9 @@ class TechnoCommandsCog(commands.Cog):
         dr = ImageDraw.Draw(temp_voice)
         dr.text((0, 0), str(voice_members), font = voice_font)
 
-        temp_voice = temp_voice.rotate(8, expand = 1)
+        temp_voice = temp_voice.rotate(10, expand = 1)
 
-        image.paste(temp_voice, (1490, 705), temp_voice)
+        image.paste(temp_voice, (1490, 685), temp_voice)
         
         saved_image = io.BytesIO()
         image.save(saved_image, format = 'PNG')
