@@ -41,6 +41,7 @@ class AutoColorsCog(commands.Cog):
                 emoji = _emoji
             )
             _button.callback = auto_role
+            _view.add_item(_button)
         await ctx.send(embed = _embed, view = _view)
     
     
