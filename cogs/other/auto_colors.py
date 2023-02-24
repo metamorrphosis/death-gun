@@ -49,14 +49,23 @@ class AutoColorsCog(commands.Cog):
                    1074053526612881508,
                    1074053260622704652
         ]
+        iterations, _row = 0, 0
         for _emoji, role_id in zip(emojis, role_ids):
+            if iterations % 3 == 0:
+                _row += 1
+
             _button = discord.ui.Button(
                 custom_id = str(role_id),
                 style = discord.ButtonStyle.gray,
-                emoji = _emoji
+                emoji = _emoji,
+                row = _row
             )
+
             _button.callback = auto_role
             _view.add_item(_button)
+
+            iterations += 1
+        
         await ctx.send(embed = _embed, view = _view)
     
     
