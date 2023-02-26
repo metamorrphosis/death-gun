@@ -12,7 +12,7 @@ class ExpandedContext(commands.Context):
     async def error_reply(self, *, title = '❌ Ошибка', description = None, fields = None):
         embed = discord.Embed(
             title = title,
-            color = 0xf03a3a,
+            color = 0xffdbb8,
             timestamp = datetime.now(),
             description = description,
             fields = fields
