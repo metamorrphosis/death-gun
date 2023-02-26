@@ -73,38 +73,5 @@ class MainBot(commands.Bot):
 main_bot = MainBot()
 main_bot.remove_command('help')
 
-
-'''
-async def clear(self, amout=1000):
-    await self.channel.purge(limit=amout)
-
-async def info(self,member:discord.Member):
-        emb = discord.Embed(title='Информация о пользователе', color=) #Выстави color
-        await self.channel.purge(limit=0)
-        emb.add_field(name="Присоеденился к Death Gun", value=member.joined_at, inline=False)
-        emb.add_field(name="Никнейм:", value=member.display_name, inline=False)
-        emb.add_field(name= "Id:", value=member.id, inline=False)
-        emb.add_field(name= "Дата регистрации в Discord", value=member.created_at.strftime("%a,%#d %B %Y, %I:%M %p UTC"), inline=False)
-        emb.set_thumbnail(url=member.avatar_url)
-        emb.set_author(name=self.message.author, icon_url=self.message.author.avatar_url)
-        await self.reply(embed = embed)
-
-async def help( self ):
-        emb = discord.Embed( title = '✅ Информация о командах сервера', color=344462)
-        emb.add_field( name = '{}clear'.format(os.getenv()'BOT_PREFIX')), value = 'Очистка чата одной командой', inline = False)
-        emb.add_field( name = '{}kick'.format(os.getenv('BOT_PREFIX')), value = 'Кикнуть участника сервера', inline = False)
-        emb.add_field( name = '{}mute'.format(os.getenv('BOT_PREFIX')), value = 'Выдать мут участнику сервера', inline = False)
-        emb.add_field( name = '{}unmute'.format(os.getenv('BOT_PREFIX')), value = 'Размутить пользователя', inline = False)
-        emb.add_field( name = '{}ban'.format(os.getenv('BOT_PREFIX')), value = 'Выдать блокировку')
-        emb.add_field( name = '{}jail'.format(os.getenv('BOT_PREFIX')), value = 'Посадить пользователя в карцер')
-        emb.add_field( name = '{}warn'.format(os.getenv('BOT_PREFIX')), value = 'Выдать warn(доступ только для высшей администрации)', inline = False)
-        emb.add_field( name = '{}warns'.format(os.getenv('BOT_PREFIX')), value = 'Посмотреть список warns у staff', inline = False)
-        emb.add_field( name = '{}unwarn'.format(os.getenv('BOT_PREFIX')), value = 'Снять warn(доступ только для высшей администрации)', inline = False)
-        emb.set_thumbnail(url = self.author.avatar_url)
-        emb.add_field( name = '{}info'.format(), value = 'Показать подробную информацию об участнике', inline = False)
-        await self.author.send(embed = emb) 
-'''
-
-
 main_bot.load_extensions()
 main_bot.run(os.getenv('BOT_TOKEN'))
