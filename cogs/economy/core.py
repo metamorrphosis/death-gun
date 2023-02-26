@@ -42,7 +42,7 @@ class EconomyCog(commands.Cog):
         )
         
         roles_object = staff_roles_util.Roles(ctx.guild)
-        staff_roles = roles_object.get_all_staff_roles()[7:]
+        staff_roles = roles_object.get_all_staff_roles()[6:]
         
         check_roles = roles_object.roles_check(
             member = ctx.author,
@@ -52,13 +52,13 @@ class EconomyCog(commands.Cog):
         roles_mention = ', '.join(role.mention for role in staff_roles)
 
         if len(check_roles) == 0:
-            return await ctx.error_reply(f'Эта команда доступна только для следующих ролей:\n {roles_mention}')
+            return await ctx.error_reply(description = f'Эта команда доступна только для следующих ролей:\n {roles_mention}')
         
         if member is None:
             return await ctx.error_reply(description = 'Вы не указали участника, которому необходимо выдать валюту', fields = [usage_field])
         
         if not(isinstance(member, discord.Member)):
-            return await ctx.error_reply(description = 'Участник не найден')
+            return await ctx.error_reply(description = 'Участник не найден', fields = [usage_field])
 
         if value is None:
             return await ctx.error_reply(description = 'Вы не указали количество валюты', fields = [usage_field])
@@ -89,7 +89,7 @@ class EconomyCog(commands.Cog):
         )
         
         roles_object = staff_roles_util.Roles(ctx.guild)
-        staff_roles = roles_object.get_all_staff_roles()[7:]
+        staff_roles = roles_object.get_all_staff_roles()[6:]
         
         check_roles = roles_object.roles_check(
             member = ctx.author,
@@ -105,7 +105,7 @@ class EconomyCog(commands.Cog):
             return await ctx.error_reply(description = 'Вы не указали участника, у которого необходимо забрать валюту', fields = [usage_field])
         
         if not(isinstance(member, discord.Member)):
-            return await ctx.error_reply(description = 'Участник не найден')
+            return await ctx.error_reply(description = 'Участник не найден', fields = [usage_field])
 
         if value is None:
             return await ctx.error_reply(description = 'Вы не указали количество валюты', fields = [usage_field])
@@ -116,7 +116,7 @@ class EconomyCog(commands.Cog):
         value = int(value)
 
         if value >= 100_000_000_000_000_000:
-            return await ctx.error_reply(description = f'Число не может быть больше 100,000,000,000,000,000 {_currency}')
+            return await ctx.error_reply(description = f'Число не может быть больше 100,000,000,000,000,000 {_currency}')
 
         await self.db.remove_money(
             member = member,
@@ -138,7 +138,7 @@ class EconomyCog(commands.Cog):
         )
         
         roles_object = staff_roles_util.Roles(ctx.guild)
-        staff_roles = roles_object.get_all_staff_roles()[7:]
+        staff_roles = roles_object.get_all_staff_roles()[6:]
         
         check_roles = roles_object.roles_check(
             member = ctx.author,
@@ -154,7 +154,7 @@ class EconomyCog(commands.Cog):
             return await ctx.error_reply(description = 'Вы не указали участника, которому необходимо сбросить валюту', fields = [usage_field])
         
         if not(isinstance(member, discord.Member)):
-            return await ctx.error_reply(description = 'Участник не найден')
+            return await ctx.error_reply(description = 'Участник не найден', fields = [usage_field])
 
         value_before = await self.db.reset_money(
             member = member
