@@ -14,15 +14,18 @@ class TicketsDB:
         self.cluster = AsyncIOMotorClient(os.getenv('MONGODB_LINK'))
     
     async def insert_ticket(self, *, author, who_claimed = None, open_time):
+        
         await self.cluster["tickets"]["tickets_list"].update_one({"_id": 0}, {"$inc": {"nmr": 1}})
         ticket_id = await self.cluster["tickets"]["tickets_list"].find_one({"_id": 0})
         ticket_id = ticket_id["nmr"]
+        
         new_ticket = {}
         new_ticket["_id"] = ticket_id
         new_ticket["author"] = int(author.id)
         new_ticket["who_claimed"] = int(who_claimed.id) if who_claimed else 0
         new_ticket["open_time"] = int(open_time)
         await self.cluster["tickets"]["tickets_list"].insert_one(new_ticket)
+        
         guild = author.guild
         log_channel = guild.get_channel(1073961351115972608)
         emblog = discord.Embed(
@@ -46,6 +49,7 @@ class TicketsDB:
     async def delete_ticket(self, *, ticket_channel, closed_by):
         ticket_id = self.get_ticket_id(ticket_channel)
         guild = ticket_channel.guild
+        
         ticket_db = await self.cluster["tickets"]["tickets_list"].find_one({"_id": ticket_id})
 
         author = guild.get_member(ticket_db["author"])
@@ -57,13 +61,11 @@ class TicketsDB:
         
 
         if ticket_db["who_claimed"] != 0:
-
             who_claimed = guild.get_member(ticket_db["who_claimed"])
             if who_claimed is None:
                 who_claimed_field = f'<@{ticket_db["who_claimed"]}> | `Данный участник покинул сервер` | `{ticket_db["who_claimed"]}`'
             else:
-                who_claimed_field = f'{who_claimed.mention} | `{who_claimed}` | `{who_claimed.id}`'
-            
+                who_claimed_field = f'{who_claimed.mention} | `{who_claimed}` | `{who_claimed.id}`' 
         else:
             who_claimed_field = 'Никто'
 
@@ -106,14 +108,17 @@ class TicketsDB:
         
         messages = messages[::-1]
         fp = f'tickets-log/ticket-{ticket_id}-log.txt'
+        
         with open(fp, 'w+') as f:
             f.write(f'Айди тикета: {ticket_id}\nАвтор тикета: {ticket_db["author"]}\nДата открытия тикета: {datetime.fromtimestamp(ticket_db["open_time"]) + timedelta(hours = 3)} МСК\n\n\n——————— Тикет открыт ———————\n\n')
+            
             for message in messages:
                 if message.content:
                     dt = message.created_at + timedelta(hours = 3)
                     dt = dt.strftime('%d.%m %H:%M:%S МСК')
                     f.write(f'[{message.author} | {message.author.id} — {dt}]\n{message.content}\n\n')
             f.write('——————— Тикет закрыт ———————')
+        
         await log_channel.send(embed = emblog, file = discord.File(fp = fp, filename = f'ticket-{ticket_id}-log.txt'))
     
     def get_ticket_id(self, ticket_channel):
@@ -133,12 +138,14 @@ class TicketsDB:
         await self.new_claimed_member(member)
         return await self.cluster["tickets"]["claimed_count"].find_one({"id": member.id})
             
-       
-    async def claim_ticket(self, *, ticket_channel, who_claimed):
+     async def claim_ticket(self, *, ticket_channel, who_claimed):
         await self.new_claimed_member(who_claimed)
         await self.cluster["tickets"]["claimed_count"].update_one({"_id": who_claimed.id}, {"$inc": {"all_claimed": 1}})
+        
         ticket_id = self.get_ticket_id(ticket_channel)
+        
         await self.cluster["tickets"]["tickets_list"].update_one({"_id": ticket_id}, {"$set": {"who_claimed": who_claimed.id}})
+        
         guild = ticket_channel.guild
         log_channel = guild.get_channel(1073961351115972608)
         emblog = discord.Embed(
