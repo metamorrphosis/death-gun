@@ -34,7 +34,7 @@ class ExpandedContext(commands.Context):
     async def neutral_reply(self, *, title = None, description = None, fields = None):
         embed = discord.Embed(
             title = title,
-            color = 0x1f86ff,
+            color = 0xebb88,
             timestamp = datetime.now(),
             description = description,
             fields = fields
