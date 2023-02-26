@@ -37,7 +37,7 @@ class EconomyDB:
         await self.insert_member(member = member)
         await self.balances.update_one(
             {"_id": member.id},
-            {"$dec": {"bal": value}}
+            {"$inc": {"bal": -value}}
         )
         return True
     
