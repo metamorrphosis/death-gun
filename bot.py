@@ -12,7 +12,7 @@ class ExpandedContext(commands.Context):
     async def error_reply(self, *, title = '❌ Ошибка', description = None, fields = None):
         embed = discord.Embed(
             title = title,
-            color = 0xffdbb8,
+            color = 0xf03a3a,
             timestamp = datetime.now(),
             description = description,
             fields = fields
@@ -34,7 +34,7 @@ class ExpandedContext(commands.Context):
     async def neutral_reply(self, *, title = None, description = None, fields = None):
         embed = discord.Embed(
             title = title,
-            color = 0xebb88,
+            color = 0xffdbb8,
             timestamp = datetime.now(),
             description = description,
             fields = fields
