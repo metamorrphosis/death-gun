@@ -44,7 +44,7 @@ class EconomyDB:
     async def reset_money(self, *, member: discord.Member) -> int:
         await self.insert_member(member = member)
         
-        bal_before = await self.balances.find_one({"_id": member.id})
+        bal_before = await self.get_money(member)
         
         await self.balances.update_one(
             {"_id": member.id},
