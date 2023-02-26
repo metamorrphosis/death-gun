@@ -4,7 +4,7 @@ from typing import Union
 import discord
 from discord.ext import commands
 
-from utils import economy_db
+from utils import economy_db, staff_roles_util
 
 _prefix = os.getenv('BOT_PREFIX')
 _currency = os.getenv('CURRENCY')
