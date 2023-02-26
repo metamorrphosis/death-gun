@@ -151,16 +151,16 @@ class EconomyCog(commands.Cog):
             return await ctx.error_reply(description = f'Эта команда доступна только для следующих ролей:\n {roles_mention}')
         
         if member is None:
-            return await ctx.error(description = 'Вы не указали участника, которому необходимо сбросить валюту', fields = [usage_field])
+            return await ctx.error_reply(description = 'Вы не указали участника, которому необходимо сбросить валюту', fields = [usage_field])
         
         if not(isinstance(member, discord.Member)):
-            return await ctx.error(description = 'Участник не найден')
+            return await ctx.error_reply(description = 'Участник не найден')
 
         value_before = await self.db.reset_money(
             member = member
         )
 
-        await ctx.success(
+        await ctx.success_reply(
             description = f'Баланс участника {member.mention} (`{member}`) обнулен. До обнуления у него было {value_before:,} {_currency}'
         )
 
