@@ -128,7 +128,7 @@ class EconomyCog(commands.Cog):
         
         
     
-    @commands.command(aliases = ['reset-money', 'rm', 'сброс-денег', 'сбросденьги', 'ресетмоней', 'ресет-моней'])
+    @commands.command(aliases = ['reset-money', 'rsm', 'сброс-денег', 'сбросденьги', 'ресетмоней', 'ресет-моней'])
     @commands.guild_only()
     async def resetmoney(self, ctx, member: Union[discord.Member, str] = None):
         usage_field = discord.EmbedField(
