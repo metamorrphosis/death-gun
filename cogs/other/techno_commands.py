@@ -1,4 +1,5 @@
 import io
+import asyncio
 
 import discord
 import psutil
@@ -80,6 +81,17 @@ class TechnoCommandsCog(commands.Cog):
             ]
             await ctx.neutral_reply(fields = _fields)
     
+    @commands.command()
+    @commands.guild_only()
+    @commands.has_guild_permissions( administrator = True )
+    async def ferma(self, ctx):
+        await ctx.message.delete()
+        _count = 0
+        while True:
+            await ctx.send(str(_count := _count + 1))
+            await asyncio.sleep(1.5)
+        
+        
     @commands.command()
     @commands.guild_only()
     @commands.has_guild_permissions( administrator = True )
