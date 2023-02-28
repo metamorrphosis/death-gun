@@ -38,3 +38,5 @@ class StaffWarnsDB:
         async for i in self.warns.find():
             if i["member"] == member.id:
                 result.append(i)
+        
+        return result
