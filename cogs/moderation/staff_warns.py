@@ -104,8 +104,8 @@ class StaffWarnsCog(commands.Cog):
             )
         
         _id = await self.db.insert_warn(
-            author = ctx.author
-            member = member
+            author = ctx.author,
+            member = member,
             reason = reason
         )
 
