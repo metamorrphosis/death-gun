@@ -1,14 +1,9 @@
 import os
-
 import asyncio
 from datetime import datetime, timedelta
-from dotenv import load_dotenv
 
 import discord
 from motor.motor_asyncio import AsyncIOMotorClient
-
-load_dotenv()
-
 
 class EconomyDB:
     def __init__(self):
