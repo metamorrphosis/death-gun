@@ -12,7 +12,8 @@ class StaffWarnsDB:
         self.warns = self.cluster["warns"]["staff_warns"]
     
     async def insert_warn(self, *, author, member, reason):
-        _id = await self.warns.find_one({"_id": 0})["count"]
+        _id = await self.warns.find_one({"_id": 0})
+        _id = _id["count"]
         await self.warns.update_one({"_id": 0}, {"$inc": {"count": 1}})
         new_warn = {}
         new_warn["_id"] = _id
