@@ -1,8 +1,13 @@
+import os
 import asyncio
 from datetime import datetime, timedelta
 
 import discord
+from dotenv import load_dotenv
 from motor.motor_asyncio import AsyncIOMotorClient
+
+load_dotenv()
+
 
 class StaffWarnsDB:
     def __init__(self):
