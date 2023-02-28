@@ -24,11 +24,26 @@ class StaffWarnsCog(commands.Cog):
         _fields = []
 
         for i in warns:
+            warn_author_id = i["author"]
+            warn_author = ctx.guild.get_member(warn_author_id)
+
+            if warn_author is None:
+                warn_author = f'<@{warn_author_id}> (`{warn_author_id}`)'
+            else:
+                warn_author = f'<@{warn_author_id}> (`{warn_author}`)'
+            
             _fields.append(
                 discord.EmbedField(
-                    
+                    name = f'Выговор **{i["_id"]}** ― <t:{i["time"]}:F>',
+                    value = f'**Автор:** {warn_author}\n' \
+                            f'**Причина:** {i["reason"]}'
                 )
             )
+        
+        await ctx.neutral_reply(
+            title = f'Выговоры {member}',
+            fields = _fields
+        )
     
     @commands.command(aliases = ['выговор'])
     @commands.guild_only()
