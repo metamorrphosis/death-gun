@@ -77,7 +77,7 @@ class InfoSelectMenuView(discord.ui.View):
                 discord.Embed().from_dict(media_picture),
             ]
             
-            _buttons = [
+            buttons = [
                 discord.ui.Button(
                     url = 'https://t.me/DeathGunOfficial',
                     label = 'Telegram',
