@@ -21,6 +21,26 @@ class StaffWarnsCog(commands.Cog):
                 description = 'У данного участника отсутствуют выговоры'
             )
         
+        _fields = []
+
+        for i in warns:
+            _fields.append(
+                discord.EmbedField(
+                    
+                )
+            )
+    
+    @commands.command(aliases = ['выговор'])
+    @commands.guild_only()
+    async def staff_warn_command(self, ctx, _member: discord.Member = None, reason = None):
+
+        warns = await self.db.get_warns(member = member)
+
+        if len(warns) == 10:
+            return await ctx.error_reply(
+                description = 'Нельзя выдать более 10 выговоров одному участнику'
+            )
+        
 
 
 def setup(bot):
