@@ -87,10 +87,8 @@ class TechnoCommandsCog(commands.Cog):
     async def icons(self, ctx):
         for i in ctx.guild.roles:
             if i.icon != None:
-                _file = io.BytesIO()
-                i.icon.save(_file)
-                _file = _file.getvalue()
-                await ctx.send(f'{i.name}', file = discord.File(_file))
+                await i.icon.save('icon.png')
+                await ctx.send(f'{i.name}', file = discord.File('icon.png'))
         
         
     @commands.command()
