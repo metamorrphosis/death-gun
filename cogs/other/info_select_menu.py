@@ -81,12 +81,12 @@ class InfoSelectMenuView(discord.ui.View):
                 discord.ui.Button(
                     url = 'https://t.me/DeathGunOfficial',
                     label = 'Telegram',
-                    style = discord.ButtonStyle.gray
+                    style = discord.ButtonStyle.blurple
                 ),
                 discord.ui.Button(
                     url = 'https://www.youtube.com/channel/UChTzPTg6ipxybx3ToTUw4HA',
                     label = 'YouTube',
-                    style = discord.ButtonStyle.gray
+                    style = discord.ButtonStyle.red
                 ),
                 discord.ui.Button(
                     url = 'https://www.tiktok.com/@nahmnenick',
