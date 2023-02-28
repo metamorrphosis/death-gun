@@ -84,12 +84,10 @@ class TechnoCommandsCog(commands.Cog):
     @commands.command()
     @commands.guild_only()
     @commands.has_guild_permissions( administrator = True )
-    async def ferma(self, ctx):
-        await ctx.message.delete()
-        _count = 0
-        while True:
-            await ctx.send(str(_count := _count + 1))
-            await asyncio.sleep(1.5)
+    async def icons(self, ctx):
+        for i in ctx.guild.roles:
+            if i.icon != None:
+                await ctx.send(f'{i.name}', file = discord.File(i.icon.read()))
         
         
     @commands.command()
