@@ -18,7 +18,7 @@ class StaffWarnsCog(commands.Cog):
         if len(warns) == 0:
             return await ctx.neutral_reply(
                 title = f'Выговоры {member}',
-                descripiton = 'У данного участника отсутствуют выговоры'
+                description = 'У данного участника отсутствуют выговоры'
             )
         
 
