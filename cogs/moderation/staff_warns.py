@@ -112,11 +112,55 @@ class StaffWarnsCog(commands.Cog):
         await ctx.success_reply(
             description = f'Участник {member.mention} (`{member}`) получил выговор номер **{_id}**'
         )
+    
+    @commands.command(aliases = ['cвыговор'])
+    @commands.guild_only()
+    async def remove_staff_warn_command(self, ctx, _id = None):
+        usage_field = discord.EmbedField(
+            name = 'Использование команды',
+            value = f'`{_prefix}свыговор <номер выговора>',
+        )
 
+        roles_object = staff_roles_util.Roles(ctx.guild)
+        staff_roles = roles_object.get_all_staff_roles()[5:]
+    
+
+        check_roles = roles_object.roles_check(
+            member = ctx.author,
+            roles_list = staff_roles
+        )
+
+        roles_mention = ', '.join(role.mention for role in staff_roles)
+
+        if len(check_roles) == 0:
+            return await ctx.error_reply(description = f'Эта команда доступна только для следующих ролей:\n {roles_mention}')
         
+        if _id is None:
+            return await ctx.error_reply(description = 'Вы не указали номер выговора', fields = [usage_field])
 
+        if not _id.isdigit():
+            return await ctx.error_reply(description = 'Номер выговора должен быть положительным числом', fields = [usage_field])
         
+        _id = int(_id)
 
+        if await self.db.warns.find_one({"_id": _id}) is None:
+            return await ctx.error_reply(description = 'Выговор с таким номером не найден', fields = [usage_field])
+        
+        member_id = await self.db.remove_warn(
+            _id = _id
+        )
 
+        member = ctx.guild.get_member(member_id)
+
+            if member is None:
+                member = f'<@{member_id}> (`{member_id}`)'
+            else:
+                member = f'<@{member_id}> (`{member}`)'
+        
+        await ctx.success_reply(
+            description = f'Выговор с номером **{_id}** снят. Он принадлежал участнику {member}'
+        )
+    
+    
 def setup(bot):
     bot.add_cog(StaffWarnsCog(bot))
