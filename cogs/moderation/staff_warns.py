@@ -152,15 +152,15 @@ class StaffWarnsCog(commands.Cog):
 
         member = ctx.guild.get_member(member_id)
 
-            if member is None:
-                member = f'<@{member_id}> (`{member_id}`)'
-            else:
-                member = f'<@{member_id}> (`{member}`)'
+        if member is None:
+            member = f'<@{member_id}> (`{member_id}`)'
+        else:
+            member = f'<@{member_id}> (`{member}`)'
         
         await ctx.success_reply(
             description = f'Выговор с номером **{_id}** снят. Он принадлежал участнику {member}'
         )
-    
+
     
 def setup(bot):
     bot.add_cog(StaffWarnsCog(bot))
