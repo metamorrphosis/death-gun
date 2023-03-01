@@ -113,12 +113,12 @@ class StaffWarnsCog(commands.Cog):
             description = f'Участник {member.mention} (`{member}`) получил выговор номер **{_id}**'
         )
     
-    @commands.command(aliases = ['cвыговор'])
+    @commands.command(aliases = ['свыговор'])
     @commands.guild_only()
     async def remove_staff_warn_command(self, ctx, _id = None):
         usage_field = discord.EmbedField(
             name = 'Использование команды',
-            value = f'`{_prefix}свыговор <номер выговора>',
+            value = f'`{_prefix}свыговор <номер выговора>`',
         )
 
         roles_object = staff_roles_util.Roles(ctx.guild)
