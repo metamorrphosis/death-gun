@@ -25,11 +25,9 @@ class StaffWarnsDB:
         return _id
 
     async def remove_warn(self, *, _id):
-        if _warn := await self.warns.find_one({"_id": _id}) is not None:
-            await self.warns.delete_one({"_id":_id})
-            return _warn["member"]
-        else:
-            return False
+        _warn = await self.warns.find_one({"_id": _id})
+        await self.warns.delete_one({"_id" : _id})
+        return _warn["member"]
 
     async def get_warns(self, *, member):
         result = []
