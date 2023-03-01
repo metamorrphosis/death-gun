@@ -74,7 +74,7 @@ class StaffWarnsCog(commands.Cog):
         )
 
         roles_object = staff_roles_util.Roles(ctx.guild)
-        staff_roles = roles_object.get_all_staff_roles()[5:]
+        staff_roles = roles_object.get_all_staff_roles()[4:]
     
 
         check_roles = roles_object.roles_check(
@@ -122,7 +122,7 @@ class StaffWarnsCog(commands.Cog):
         )
 
         roles_object = staff_roles_util.Roles(ctx.guild)
-        staff_roles = roles_object.get_all_staff_roles()[5:]
+        staff_roles = roles_object.get_all_staff_roles()[4:]
     
 
         check_roles = roles_object.roles_check(
