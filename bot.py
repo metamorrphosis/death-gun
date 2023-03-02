@@ -1,5 +1,6 @@
 import os
 import json
+import asyncio
 from datetime import datetime
 
 import discord
@@ -32,6 +33,7 @@ class ExpandedContext(commands.Context):
             )
             embed.set_footer(text = self.author, icon_url = self.author.display_avatar.url)
             await self.reply(embed = embed)
+            await asyncio.sleep(0.5)
 
     async def neutral_reply(self, *, title = None, description = None, fields = None):
         async with self.typing():
