@@ -251,6 +251,7 @@ class StaffWarnsCog(commands.Cog):
             use_default_buttons = False,
             custom_buttons = page_buttons,
             loop_pages = True,
+            timeout = 120
         )
 
         await paginator.send(ctx)
