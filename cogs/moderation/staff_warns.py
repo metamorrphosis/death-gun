@@ -231,14 +231,14 @@ class StaffWarnsCog(commands.Cog):
         
         if len(_fields) != 0:
             _embed = discord.Embed(
-                    title = 'Все выговоры',
-                    color = 0xffdbb8,
-                    timestamp = datetime.now(),
-                    fields = _fields
-                )
-                _embed.set_footer(text = ctx.author, icon_url = ctx.author.display_avatar.url)
+                title = 'Все выговоры',
+                color = 0xffdbb8,
+                timestamp = datetime.now(),
+                fields = _fields
+            )
+            _embed.set_footer(text = ctx.author, icon_url = ctx.author.display_avatar.url)
 
-                _pages.append(_embed)
+            _pages.append(_embed)
         
         page_buttons = [
             pages.PaginatorButton("prev", emoji = discord.PartialEmoji.from_str('<:left:1080904814461993000>'), style = discord.ButtonStyle.gray),
