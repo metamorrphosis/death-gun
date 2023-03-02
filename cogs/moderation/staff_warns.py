@@ -186,7 +186,7 @@ class StaffWarnsCog(commands.Cog):
         _pages = []
         _fields = []
 
-        async for index, i in enumerate(warns, start = 1):
+        for index, i in enumerate(warns, start = 1):
             if index % 10 == 0:
                 _embed = discord.Embed(
                     title = 'Все выговоры',
