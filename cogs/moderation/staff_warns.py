@@ -2,7 +2,7 @@ import os
 from typing import Union
 
 import discord
-from discord.ext import commands
+from discord.ext import commands, pages
 
 from utils import staff_warns_db
 from utils import staff_roles as staff_roles_util
@@ -116,7 +116,7 @@ class StaffWarnsCog(commands.Cog):
             description = f'Участник {member.mention} (`{member}`) получил выговор номер **{_id}**'
         )
     
-    @commands.command(aliases = ['свыговор'])
+    @commands.command(aliases = ['свыговор', 'снятьвыговор'])
     @commands.guild_only()
     async def remove_staff_warn_command(self, ctx, _id = None):
         usage_field = discord.EmbedField(
@@ -163,6 +163,82 @@ class StaffWarnsCog(commands.Cog):
         await ctx.success_reply(
             description = f'Выговор с номером **{_id}** снят. Он принадлежал участнику {member}'
         )
+    
+    @commands.command(aliases = ['свыговоры'])
+    @commands.guild_only()
+    async def all_staff_warns_command(self, ctx):
+        roles_object = staff_roles_util.Roles(ctx.guild)
+        staff_roles = roles_object.get_all_staff_roles()
+    
+
+        check_roles = roles_object.roles_check(
+            member = ctx.author,
+            roles_list = staff_roles
+        )
+
+        roles_mention = ', '.join(role.mention for role in staff_roles)
+
+        if len(check_roles) == 0:
+            return await ctx.error_reply(description = f'Эта команда доступна только для следующих ролей:\n {roles_mention}')
+        
+        warns = self.db.warns
+
+        _pages = []
+        _fields = []
+
+        async for index, i in enumerate(warns, start = 1):
+            if index % 10 == 0:
+                _embed = discord.Embed(
+                    title = 'Все выговоры',
+                    color = 0xffdbb8,
+                    timestamp = datetime.now(),
+                    fields = _fields
+                )
+                _embed.set_footer(text = ctx.author, icon_url = ctx.author.display_avatar.url)
+
+                _pages.append(_embed)
+                _field.clear()
+            
+            warn_author_id = i["author"]
+            warn_author = ctx.guild.get_member(warn_author_id)
+
+            if warn_author is None:
+                warn_author = f'<@{warn_author_id}> (`{warn_author_id}`)'
+            else:
+                warn_author = f'<@{warn_author_id}> (`{warn_author}`)'
+            
+            warn_member_id = i["member"]
+            warn_member = ctx.guild.get_member(warn_member_id)
+
+            if warn_member is None:
+                warn_member = f'<@{warn_member_id}> (`{warn_member_id}`)'
+            else:
+                warn_member = f'<@{warn_member_id}> (`{warn_member}`)'
+            
+            _fields.append(
+                discord.EmbedField(
+                    name = f'Выговор **{i["_id"]}** ― <t:{i["time"]}:F>',
+                    value = f'**Автор:** {warn_author}\n' \
+                            f'**Кому:** {warn_member}\n' \
+                            f'**Причина:** {i["reason"]}'
+                )
+            )
+        
+        page_buttons = [
+            pages.PaginatorButton("prev", emoji = discord.PartialEmoji.from_str('<:left:1080904814461993000>'), style = discord.ButtonStyle.green),
+            pages.PaginatorButton("page_indicator", style = discord.ButtonStyle.gray, disabled = True),
+            pages.PaginatorButton("next", emoji = discord.PartialEmoji.from_str('<:right:1080904828923936890>'), style = discord.ButtonStyle.green)
+        ]
+
+        paginator = pages.Paginator(
+            pages = _pages,
+            use_default_buttons = False,
+            custom_buttons = page_buttons,
+            loop_pages = True,
+        )
+
+        await paginator.send(ctx)
+
 
     
 def setup(bot):
