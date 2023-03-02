@@ -20,7 +20,7 @@ class ShopCog(commands.Cog):
     @commands.guild_only()
     async def shop(self, ctx):
         pass
-        
+
         '''
         TODO:
 
@@ -40,6 +40,8 @@ class ShopCog(commands.Cog):
         КАЗИНО:
         500 лепестков (валюта анбеливы) будет равняться одному донат коину (валюта нашего кастом бота)
         все циферки выше сказал скай
+        у анбеливы апи есть, токен в .env уже написан
+        обмен донатки к валюте анбеливы через aiohttp для асинка
         '''
 
 def setup(bot):
