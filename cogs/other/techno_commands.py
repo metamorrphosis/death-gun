@@ -65,13 +65,17 @@ class TechnoCommandsCog(commands.Cog):
     @commands.guild_only()
     @commands.has_guild_permissions( administrator = True )
     async def get_json_embed(self, ctx, message_id: int):
+        await ctx.trigger_typing()
+
         message = await ctx.channel.fetch_message(message_id)
         print()
         print([embed.to_dict() for embed in message.embeds])
     
     @commands.command(aliases = ['ботстатистика', 'ботс', 'ботстат'])
     @commands.guild_only()
-    async def stats_bot(self, ctx):  
+    async def stats_bot(self, ctx):
+        await ctx.trigger_typing()
+
         CPU = psutil.cpu_percent(interval = 2) 
         _fields = [
             discord.EmbedField(name = 'CPU', value = f'{CPU} %'),
@@ -94,6 +98,8 @@ class TechnoCommandsCog(commands.Cog):
     @commands.guild_only()
     @commands.has_guild_permissions( administrator = True )
     async def banner(self, ctx):
+        await ctx.trigger_typing()
+        
         image = Image.open('resources/banner.png')
         
         image_draw = ImageDraw.Draw(image)

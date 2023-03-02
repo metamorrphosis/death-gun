@@ -18,9 +18,14 @@ class EconomyCog(commands.Cog):
 
     @commands.command(aliases = ['money', 'bal', 'бал', 'баланс'])
     @commands.guild_only()
-    async def balance(self, ctx, member: discord.Member = None):
+    async def balance(self, ctx, member: Union[discord.Member, str] = None):
+        await ctx.trigger_typing()
+
         member = member or ctx.author
 
+        if not(isinstance(member, discord.Member)):
+            member = ctx.author
+        
         member_bal = await self.db.get_money(member = member)
 
         await ctx.neutral_reply(
@@ -36,6 +41,8 @@ class EconomyCog(commands.Cog):
     @commands.command(aliases = ['add-money', 'am', 'выдать-деньги', 'выдатьденьги', 'аддмоней', 'монейадд'])
     @commands.guild_only()
     async def addmoney(self, ctx, member: Union[discord.Member, str] = None, value = None):
+        await ctx.trigger_typing()
+
         usage_field = discord.EmbedField(
             name = 'Использование команды',
             value = f'`{_prefix}add-money <ник, упоминание или ID участника> <количество>`',
@@ -83,6 +90,8 @@ class EconomyCog(commands.Cog):
     @commands.command(aliases = ['remove-money', 'rm', 'забрать-деньги', 'забратьденьги', 'ремувмоней', 'монейремув'])
     @commands.guild_only()
     async def removemoney(self, ctx, member: Union[discord.Member, str] = None, value = None):
+        await ctx.trigger_typing()
+
         usage_field = discord.EmbedField(
             name = 'Использование команды',
             value = f'`{_prefix}remove-money <ник, упоминание или ID участника> <количество>`',
@@ -131,6 +140,8 @@ class EconomyCog(commands.Cog):
     @commands.command(aliases = ['reset-money', 'rsm', 'сброс-денег', 'сбросденьги', 'ресетмоней', 'ресет-моней'])
     @commands.guild_only()
     async def resetmoney(self, ctx, member: Union[discord.Member, str] = None):
+        await ctx.trigger_typing()
+        
         usage_field = discord.EmbedField(
             name = 'Использование команды',
             value = f'`{_prefix}reset-money <ник, упоминание или ID участника>`'

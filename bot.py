@@ -11,31 +11,28 @@ load_dotenv()
 
 class ExpandedContext(commands.Context):  
     async def error_reply(self, *, title = '❌ Ошибка', description = None, fields = None):
-        async with self.typing():
-            embed = discord.Embed(
-                title = title,
-                color = 0xf03a3a,
-                timestamp = datetime.now(),
-                description = description,
-                fields = fields
-            )
-            embed.set_footer(text = self.author, icon_url = self.author.display_avatar.url)
-            await self.reply(embed = embed)
+        embed = discord.Embed(
+            title = title,
+            color = 0xf03a3a,
+            timestamp = datetime.now(),
+            description = description,
+            fields = fields
+        )
+        embed.set_footer(text = self.author, icon_url = self.author.display_avatar.url)
+        await self.reply(embed = embed)
 
     async def success_reply(self, *, title = 'Успешно', description = None, fields = None):
-        async with self.typing():
-            embed = discord.Embed(
-                title = title,
-                color = 0x9cde6e,
-                timestamp = datetime.now(),
-                description = description,
-                fields = fields
-            )
-            embed.set_footer(text = self.author, icon_url = self.author.display_avatar.url)
-            await self.reply(embed = embed)
+        embed = discord.Embed(
+            title = title,
+            color = 0x9cde6e,
+            timestamp = datetime.now(),
+            description = description,
+            fields = fields
+        )
+        embed.set_footer(text = self.author, icon_url = self.author.display_avatar.url)
+        await self.reply(embed = embed)
 
     async def neutral_reply(self, *, title = None, description = None, fields = None):
-        await self.trigger_typing()
         embed = discord.Embed(
             title = title,
             color = 0xffdbb8,
