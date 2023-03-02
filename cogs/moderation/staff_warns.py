@@ -18,7 +18,7 @@ class StaffWarnsCog(commands.Cog):
     
     @commands.command(aliases = ['выговоры'])
     @commands.guild_only()
-    async def staff_warns_command(self, ctx, _member: discord.Member = None):
+    async def staff_warns_command(self, ctx, _member: Union[discord.Member, str] = None):
         roles_object = staff_roles_util.Roles(ctx.guild)
         staff_roles = roles_object.get_all_staff_roles()
     
@@ -35,6 +35,8 @@ class StaffWarnsCog(commands.Cog):
         
         member = _member or ctx.author
 
+        if not(isinstance(member, discord.Member)):
+            member = ctx.author
         warns = await self.db.get_warns(member = member)
 
         if len(warns) == 0:
@@ -69,7 +71,7 @@ class StaffWarnsCog(commands.Cog):
     
     @commands.command(aliases = ['выговор'])
     @commands.guild_only()
-    async def staff_warn_command(self, ctx, member: discord.Member = None, reason = None):
+    async def staff_warn_command(self, ctx, member: Union[discord.Member, str] = None, reason = None):
         usage_field = discord.EmbedField(
             name = 'Использование команды',
             value = f'`{_prefix}выговор <ник, упоминание или ID участника> [причина (не обязательно)]`',
@@ -117,18 +119,6 @@ class StaffWarnsCog(commands.Cog):
         await ctx.success_reply(
             description = f'Участник {member.mention} (`{member}`) получил выговор номер **{_id}**'
         )
-    
-    @staff_warn_command.error
-    async def warn_error(self, ctx, error):        
-        if isinstance(error, commands.MemberNotFound):
-            await ctx.error_reply(f'Участник не найден', 
-                fields = [
-                    discord.EmbedField(
-                        name = 'Использование команды',
-                        value = f'`{_prefix}выговор <ник, упоминание или ID участника> [причина (не обязательно)]`',
-                    )
-                ]
-            )
     
     @commands.command(aliases = ['свыговор', 'снятьвыговор'])
     @commands.guild_only()
