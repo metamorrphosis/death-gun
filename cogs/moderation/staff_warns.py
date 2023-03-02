@@ -67,7 +67,7 @@ class StaffWarnsCog(commands.Cog):
     
     @commands.command(aliases = ['выговор'])
     @commands.guild_only()
-    async def staff_warn_command(self, ctx, member: Union[discord.Member, str] = None, reason = None):
+    async def staff_warn_command(self, ctx, member: Union[discord.Member, str] = None, *, reason = None):
         usage_field = discord.EmbedField(
             name = 'Использование команды',
             value = f'`{_prefix}выговор <ник, упоминание или ID участника> [причина (не обязательно)]`',
