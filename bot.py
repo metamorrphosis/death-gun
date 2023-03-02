@@ -33,7 +33,8 @@ class ExpandedContext(commands.Context):
         await self.reply(embed = embed)
 
     async def neutral_reply(self, *, title = None, description = None, fields = None):
-        async with self.typing():
+        await self.typing()
+        if 1:
             embed = discord.Embed(
                 title = title,
                 color = 0xffdbb8,
