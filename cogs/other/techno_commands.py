@@ -71,15 +71,14 @@ class TechnoCommandsCog(commands.Cog):
     
     @commands.command(aliases = ['ботстатистика', 'ботс', 'ботстат'])
     @commands.guild_only()
-    async def stats_bot(self, ctx): 
-        async with ctx.channel.typing(): 
-            CPU = psutil.cpu_percent(interval = 2) 
-            _fields = [
-                discord.EmbedField(name = 'CPU', value = f'{CPU} %'),
-                discord.EmbedField(name = 'Пинг', value = f'{int(self.bot.latency * 1000)} мс'),
-                discord.EmbedField(name = 'Бот был запущен', value = f'<t:{self.bot.uptime}:F>')
-            ]
-            await ctx.neutral_reply(fields = _fields)
+    async def stats_bot(self, ctx):  
+        CPU = psutil.cpu_percent(interval = 2) 
+        _fields = [
+            discord.EmbedField(name = 'CPU', value = f'{CPU} %'),
+            discord.EmbedField(name = 'Пинг', value = f'{int(self.bot.latency * 1000)} мс'),
+            discord.EmbedField(name = 'Бот был запущен', value = f'<t:{self.bot.uptime}:F>')
+        ]
+        await ctx.neutral_reply(fields = _fields)
     
     @commands.command()
     @commands.guild_only()
