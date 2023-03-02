@@ -37,6 +37,7 @@ class StaffWarnsCog(commands.Cog):
 
         if not(isinstance(member, discord.Member)):
             member = ctx.author
+        
         warns = await self.db.get_warns(member = member)
 
         if len(warns) == 0:
