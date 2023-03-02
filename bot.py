@@ -22,19 +22,19 @@ class ExpandedContext(commands.Context):
             await self.reply(embed = embed)
 
     async def success_reply(self, *, title = 'Успешно', description = None, fields = None):
-        embed = discord.Embed(
-            title = title,
-            color = 0x9cde6e,
-            timestamp = datetime.now(),
-            description = description,
-            fields = fields
-        )
-        embed.set_footer(text = self.author, icon_url = self.author.display_avatar.url)
-        await self.reply(embed = embed)
+        async with self.typing():
+            embed = discord.Embed(
+                title = title,
+                color = 0x9cde6e,
+                timestamp = datetime.now(),
+                description = description,
+                fields = fields
+            )
+            embed.set_footer(text = self.author, icon_url = self.author.display_avatar.url)
+            await self.reply(embed = embed)
 
     async def neutral_reply(self, *, title = None, description = None, fields = None):
-        self.typing()
-        if 1:
+        async with self.typing():
             embed = discord.Embed(
                 title = title,
                 color = 0xffdbb8,
