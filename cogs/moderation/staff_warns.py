@@ -229,7 +229,7 @@ class StaffWarnsCog(commands.Cog):
                 )
             )
         
-        if len(_fiels) != 0:
+        if len(_fields) != 0:
             _embed = discord.Embed(
                     title = 'Все выговоры',
                     color = 0xffdbb8,
