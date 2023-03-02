@@ -202,7 +202,7 @@ class StaffWarnsCog(commands.Cog):
                 _embed.set_footer(text = ctx.author, icon_url = ctx.author.display_avatar.url)
 
                 _pages.append(_embed)
-                _field.clear()
+                _fields.clear()
             
             warn_author_id = i["author"]
             warn_author = ctx.guild.get_member(warn_author_id)
