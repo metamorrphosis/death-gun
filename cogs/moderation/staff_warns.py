@@ -188,11 +188,11 @@ class StaffWarnsCog(commands.Cog):
         _pages = []
         _fields = []
 
-        async for index, i in asyncstdlib.enumerate(warns.find(), start = 1):
+        async for index, i in asyncstdlib.enumerate(warns.find()):
             if i["_id"] == 0:
                 continue
             
-            if index % 11 == 0:
+            if index % 10 == 0:
                 _embed = discord.Embed(
                     title = 'Все выговоры',
                     color = 0xffdbb8,
