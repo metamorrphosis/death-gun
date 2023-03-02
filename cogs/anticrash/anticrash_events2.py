@@ -15,7 +15,8 @@ class AnticrashEventsCog2(commands.Cog):
             983675453988544532, # dg
             1075867179137900584, # dg bot (self.bot.user.id)
             708616355024207884, # akemi
-            310848622642069504 # JuniperBot 
+            310848622642069504, # JuniperBot
+            687717307543322628
         ]
         self.admin_channel = 1053963528735838220
     
