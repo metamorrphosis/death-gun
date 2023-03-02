@@ -192,7 +192,7 @@ class StaffWarnsCog(commands.Cog):
             if i["_id"] == 0:
                 continue
             
-            if index % 10 == 0:
+            if index % 11 == 0:
                 _embed = discord.Embed(
                     title = 'Все выговоры',
                     color = 0xffdbb8,
