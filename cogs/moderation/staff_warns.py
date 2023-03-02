@@ -2,6 +2,7 @@ import os
 from typing import Union
 
 import discord
+import asyncstdlib
 from discord.ext import commands, pages
 
 from utils import staff_warns_db
@@ -186,7 +187,7 @@ class StaffWarnsCog(commands.Cog):
         _pages = []
         _fields = []
 
-        for index, i in enumerate(warns, start = 1):
+        for index, i in asyncstdlib.enumerate(warns, start = 1):
             if index % 10 == 0:
                 _embed = discord.Embed(
                     title = 'Все выговоры',
