@@ -192,7 +192,7 @@ class StaffWarnsCog(commands.Cog):
             if i["_id"] == 0:
                 continue
             
-            if index % 10 >= 0:
+            if index % 10 == 0:
                 _embed = discord.Embed(
                     title = 'Все выговоры',
                     color = 0xffdbb8,
@@ -247,7 +247,7 @@ class StaffWarnsCog(commands.Cog):
         ]
 
         paginator = pages.Paginator(
-            pages = _pages,
+            pages = _pages[1:],
             use_default_buttons = False,
             custom_buttons = page_buttons,
             loop_pages = True,
