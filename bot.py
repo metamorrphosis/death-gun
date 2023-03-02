@@ -33,7 +33,7 @@ class ExpandedContext(commands.Context):
         await self.reply(embed = embed)
 
     async def neutral_reply(self, *, title = None, description = None, fields = None):
-        await self.typing()
+        self.typing()
         if 1:
             embed = discord.Embed(
                 title = title,
