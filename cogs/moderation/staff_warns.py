@@ -92,7 +92,10 @@ class StaffWarnsCog(commands.Cog):
 
         if not(isinstance(member, discord.Member)):
             return await ctx.error_reply(description = 'Участник не найден', fields = [usage_field])
-
+        
+        if ctx.author.top_role.position <= member.top_role.position:
+            return await ctx.error_reply(description = 'Нельзя выдать выговор участнику, у которого позиция высшей роли такая же, либо выше чем у вас')
+                        
         if reason is None:
             reason = 'Причина отсутствует'
         
