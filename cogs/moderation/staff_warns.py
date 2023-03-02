@@ -188,7 +188,7 @@ class StaffWarnsCog(commands.Cog):
         _pages = []
         _fields = []
 
-        async for index, i in asyncstdlib.enumerate(warns.find()):
+        async for index, i in asyncstdlib.enumerate(warns.find() start = -1):
             if i["_id"] == 0:
                 continue
             
