@@ -33,7 +33,6 @@ class ExpandedContext(commands.Context):
             )
             embed.set_footer(text = self.author, icon_url = self.author.display_avatar.url)
             await self.reply(embed = embed)
-            await asyncio.sleep(0.5)
 
     async def neutral_reply(self, *, title = None, description = None, fields = None):
         await self.trigger_typing()
@@ -46,7 +45,6 @@ class ExpandedContext(commands.Context):
         )
         embed.set_footer(text = self.author, icon_url = self.author.display_avatar.url)
         await self.reply(embed = embed)
-        await asyncio.sleep(0.5)
 
 
 class MainBot(commands.Bot):
