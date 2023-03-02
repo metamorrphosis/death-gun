@@ -118,6 +118,18 @@ class StaffWarnsCog(commands.Cog):
             description = f'Участник {member.mention} (`{member}`) получил выговор номер **{_id}**'
         )
     
+    @staff_warn_command.error
+    async def warn_error(self, ctx, error):        
+        if isinstance(error, commands.MemberNotFound):
+            await ctx.error_reply(f'Участник не найден', 
+                fields = [
+                    discord.EmbedField(
+                        name = 'Использование команды',
+                        value = f'`{_prefix}выговор <ник, упоминание или ID участника> [причина (не обязательно)]`',
+                    )
+                ]
+            )
+    
     @commands.command(aliases = ['свыговор', 'снятьвыговор'])
     @commands.guild_only()
     async def remove_staff_warn_command(self, ctx, _id = None):
