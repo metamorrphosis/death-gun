@@ -32,8 +32,7 @@ class ShopCog(commands.Cog):
         start_embed.set_footer(text = self.author, icon_url = self.author.display_avatar.url)
 
         await ctx.reply(
-            title = 'Магазин донатной валюты DeathGun',
-            description = 
+            title = 'Магазин донатной валюты DeathGun'
         )
         '''
         TODO:
