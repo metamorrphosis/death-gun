@@ -27,7 +27,6 @@ class ShopCog(commands.Cog):
             start_embed = discord.Embed(
                 title = title,
                 color = 0xffca7a,
-                timestamp = datetime.now(),
                 description = description,
                 fields = fields
             )
