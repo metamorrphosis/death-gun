@@ -26,19 +26,24 @@ class ShopCog(commands.Cog):
         def get_embed(*, title = None, description = None, fields = None):
             start_embed = discord.Embed(
                 title = title,
-                color = 0x9cde6e,
+                color = 0xffca7a,
                 timestamp = datetime.now(),
                 description = description,
                 fields = fields
             )
-            start_embed.set_footer(text = ctx.author, icon_url = ctx.author.display_avatar.url)
             start_embed.set_image(url = 'https://media.discordapp.net/attachments/1075455614249086997/1075476615758348408/-PhotoRoom.png-PhotoRoom66.png?width=1035&height=60')
 
             return start_embed
 
         _embeds = [
             get_embed(
-                title = 'Магазин донатной валюты DeathGun'
+                title = 'Магазин донатной валюты DeathGun'б
+                fields = [
+                    discord.EmbedField(
+                        title = '<:gicon2:1075458949089853610> Спонсорские роли',
+                        description = f'> <:godicon:1079082853834436608>・<@&1054133641220980838> — 399{_currency} / месяц\n> <:absolute:1075469414008356934>・<@&1054133671839420526> — 299{_currency} / месяц\n> <:blessed:1075469590794092544>・<@&1054134326394110053> — 219{_currency} / месяц\n> <:faboulous:1075469381129228368>・<@&1054134307280662558> — 169{_currency} / месяц\n> <:prime:1075469094683422750>・<@&1054134320962474054> — 89{_currency} / месяц'
+                    )
+                ]
             )
         ]
 
