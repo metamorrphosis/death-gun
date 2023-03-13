@@ -31,7 +31,7 @@ class ShopCog(commands.Cog):
                 description = description,
                 fields = fields
             )
-            start_embed.set_image(url = 'https://media.discordapp.net/attachments/1075455614249086997/1075476615758348408/-PhotoRoom.png-PhotoRoom66.png?width=1035&height=60')
+            start_embed.set_image(url = 'https://media.discordapp.net/attachments/1053963528735838220/1076218146505101492/1676660790819.png')
 
             return start_embed
 
