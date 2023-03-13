@@ -9,6 +9,7 @@ from utils import staff_roles as staff_roles_util
 
 _prefix = os.getenv('BOT_PREFIX')
 _currency = os.getenv('CURRENCY')
+_unb_api_token = os.getenv('UNB_API_TOKEN')
 
 
 class ShopCog(commands.Cog):
@@ -19,8 +20,21 @@ class ShopCog(commands.Cog):
     @commands.command(aliases = ['store', 'магазин'])
     @commands.guild_only()
     async def shop(self, ctx):
-        pass
+        await ctx.trigger_typing()
 
+        start_embed = discord.Embed(
+            title = title,
+            color = 0x9cde6e,
+            timestamp = datetime.now(),
+            description = description,
+            fields = fields
+        )
+        start_embed.set_footer(text = self.author, icon_url = self.author.display_avatar.url)
+
+        await ctx.reply(
+            title = 'Магазин донатной валюты DeathGun',
+            description = 
+        )
         '''
         TODO:
 
