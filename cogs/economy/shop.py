@@ -1,5 +1,6 @@
 import os
 import aiohttp
+from datetime import datetime
 
 import discord
 from discord.ext import commands
@@ -22,18 +23,26 @@ class ShopCog(commands.Cog):
     async def shop(self, ctx):
         await ctx.trigger_typing()
 
-        start_embed = discord.Embed(
-            title = title,
-            color = 0x9cde6e,
-            timestamp = datetime.now(),
-            description = description,
-            fields = fields
-        )
-        start_embed.set_footer(text = self.author, icon_url = self.author.display_avatar.url)
+        def get_embed(self, title = None, description = None, fields = None)
+            start_embed = discord.Embed(
+                title = title,
+                color = 0x9cde6e,
+                timestamp = datetime.now(),
+                description = description,
+                fields = fields
+            )
+            start_embed.set_footer(text = ctx.author, icon_url = ctx.author.display_avatar.url)
+            start_embed.set_image(url = 'https://media.discordapp.net/attachments/1075455614249086997/1075476615758348408/-PhotoRoom.png-PhotoRoom66.png?width=1035&height=60')
 
-        await ctx.reply(
-            title = 'Магазин донатной валюты DeathGun'
-        )
+            return start_embed
+
+        _embeds = [
+            get_embed(
+                title = 'Магазин донатной валюты DeathGun'
+            )
+        ]
+
+        await ctx.reply(embeds = _embeds)
         '''
         TODO:
 
