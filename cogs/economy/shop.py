@@ -37,7 +37,7 @@ class ShopCog(commands.Cog):
 
         _embeds = [
             get_embed(
-                title = 'Магазин донатной валюты DeathGun'б
+                title = 'Магазин донатной валюты DeathGun',
                 fields = [
                     discord.EmbedField(
                         title = '<:gicon2:1075458949089853610> Спонсорские роли',
