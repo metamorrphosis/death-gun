@@ -23,7 +23,7 @@ class ShopCog(commands.Cog):
     async def shop(self, ctx):
         await ctx.trigger_typing()
 
-        def get_embed(self, title = None, description = None, fields = None)
+        def get_embed(self, title = None, description = None, fields = None):
             start_embed = discord.Embed(
                 title = title,
                 color = 0x9cde6e,
