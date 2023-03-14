@@ -116,15 +116,15 @@ class ShopSelectMenuView(discord.ui.View):
                 emoji = discord.PartialEmoji.from_str('<:tochkaicon:1075458720659689533>')            
             ),
             discord.SelectOption(
-                value = 'casino',
-                label = 'Казино',
-                description = 'Монеты в боте UnbelievaBoat',
-                emoji = discord.PartialEmoji.from_str('<:tochkaicon:1075458720659689533>')            
-            ),
-            discord.SelectOption(
                 value = 'support',
                 label = 'Саппорт',
                 description = 'Начальная роль модерации',
+                emoji = discord.PartialEmoji.from_str('<:tochkaicon:1075458720659689533>')            
+            ),
+            discord.SelectOption(
+                value = 'casino',
+                label = 'Казино',
+                description = 'Монеты в боте UnbelievaBoat',
                 emoji = discord.PartialEmoji.from_str('<:tochkaicon:1075458720659689533>')            
             )
         ]
@@ -160,7 +160,7 @@ class ShopSelectMenuView(discord.ui.View):
                                                         ephemeral = True)
             
             await self.db.remove_money(member = interaction.user, value = 349)
-            await interaction.response.send_message(f'ID покупки: `{shortuuid.ShortUUID().random(length=22)}`' \
+            await interaction.response.send_message(f'ID покупки: `{shortuuid.ShortUUID().random(length=22)}`\n' \
                                                     f'Вы успешно приобрели саппорта\n' \
                                                     f'Для получения роли откройте тикет и отправьте скриншот с этим сообщением', 
                                                     ephemeral = True)
