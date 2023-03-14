@@ -108,16 +108,37 @@ class ShopSelectMenuView(discord.ui.View):
         custom_id = 'shop_select_menu',
         options = [
             discord.SelectOption(
+                value = 'guild',
+                label = 'Гильдия',
+                description = 'Своя гильдия',
+                emoji = discord.PartialEmoji.from_str('<:tochkaicon:1075458720659689533>')            
+            ),
+            discord.SelectOption(
                 value = 'casino',
                 label = 'Казино',
                 description = 'Монеты в боте UnbelievaBoat',
                 emoji = discord.PartialEmoji.from_str('<:tochkaicon:1075458720659689533>')            
-            ),
+            )
         ]
     )
     async def select_callback(self, select, interaction):
         if select.values[0] == 'casino':
             await interaction.response.send_modal(CasinoModal())
+        elif select.values[0] == 'guild':
+            member_bal = await self.db.get_money(member = interaction.user)
+            member_bal = member_bal["bal"]
+
+            if member_bal < 149:
+                await interaction.response.send_message(f'У вас нету столько донаткоинов\n' \
+                                                        f'Ваш текущий баланс: **{member_bal}{_currency}**\n' \
+                                                        f'Гильдия стоит: **149{_currency}**\n'
+                                                        ephemeral = True)
+            
+            await self.db.remove_money(member = interaction.user, value = 149)
+            await interaction.user.add_roles(interaction.guild.get_role(1074035881297596417))
+            await interaction.response.send_message('Вы успешно приобрели гильдию\n' \
+                                                    'Для создания гильдии используйте команду `?create`', 
+                                                    ephemeral = True)
 
 
 class CasinoModal(discord.ui.Modal):
