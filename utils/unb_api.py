@@ -23,6 +23,7 @@ async def update_money(*, member, amount, reason = None):
     print(headers)
     print(payload)
     async with aiohttp.ClientSession(headers = headers) as session:
-        await session.patch(url, data = payload)
+        async with session.patch(url, data = payload) as resp:
+            print(resp.status)
 
     return 0
