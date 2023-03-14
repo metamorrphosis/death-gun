@@ -110,12 +110,17 @@ class ShopSelectMenuView(discord.ui.View):
         custom_id = 'shop_select_menu',
         options = [
             discord.SelectOption(
+                value = 'custom_role',
+                label = 'Личная кастомная роль',
+                description = 'Ваша личная роль, которой вы управляете',
+                emoji = discord.PartialEmoji.from_str('<:tochkaicon:1075458720659689533>')            
+            ),
+            discord.SelectOption(
                 value = 'voice',
                 label = 'Личный голосовой канал',
                 description = 'Ваш личный голосовой канал, доступ к которому есть у вас и ваших друзей',
                 emoji = discord.PartialEmoji.from_str('<:tochkaicon:1075458720659689533>')            
             ),
-
             discord.SelectOption(
                 value = 'guild',
                 label = 'Гильдия',
@@ -137,7 +142,20 @@ class ShopSelectMenuView(discord.ui.View):
         ]
     )
     async def select_callback(self, select, interaction):
-        if select.values[0] == 'voice':
+        if select.values[0] == 'custom_role':
+            member_bal = await self.db.get_money(member = interaction.user)
+            member_bal = member_bal["bal"]
+
+            if member_bal < 99:
+                return await interaction.response.send_message(f'У вас нету столько донаткоинов\n' \
+                                                        f'Ваш текущий баланс: **{member_bal}{_currency}**\n' \
+                                                        f'Кастомная роль стоит: **99{_currency}**\n',
+                                                        ephemeral = True)
+            
+            await self.db.remove_money(member = interaction.user, value = 99)
+            await interaction.response.send_modal(CustomRoleModal())
+        
+        elif select.values[0] == 'voice':
             member_bal = await self.db.get_money(member = interaction.user)
             member_bal = member_bal["bal"]
 
@@ -238,6 +256,34 @@ class CasinoModal(discord.ui.Modal):
         
         await interaction.response.send_message('Обмен произошел успешно', ephemeral = True)
 
+
+class CustomRoleModal(discord.ui.Modal):
+    def __init__(self) -> None:
+        self.db = economy_db.EconomyDB()
+        super().__init__(
+            discord.ui.InputText(
+                label = 'Название кастомной роли',
+                placeholder = 'От 2 до 50 символов',
+                min_length = 2,
+                max_length = 50,
+                style = discord.InputTextStyle.short,
+                required = True,
+            ),
+            title = 'Кастомная роль'
+        )
+
+    async def callback(self, interaction):
+        _role = await ctx.guild.create_role(name = self.children[0].value)
+        _channel = interaction.guild.get_channel(1080434155692752957)
+        await _channel.send(f'**1.** {interaction.user.mention} | `{interaction.user}` | `{interaction.user.id}`' \
+                            f'**2.** {_role.mention} | `{_role.id}`' \
+                            f'**3.** Покупка за донаткоины' \
+                            f'**4.** —')
+        
+        await interaction.user.add_roles(_role)
+        await interaction.response.send_message('Роль создана успешно' \
+                                                'Для дальнейших изменений кастомки обратитесь в <#1074061219750748282>', 
+                                                ephemeral = True)
 
 def setup(bot):
     bot.add_cog(ShopCog(bot))
