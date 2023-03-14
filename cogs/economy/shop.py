@@ -115,7 +115,7 @@ class ShopSelectMenuView(discord.ui.View):
         
         await self.db.remove_money(member = interaction.user, value = value)
         _channel = interaction.guild.get_channel(1085225559770026055)
-        _time = int(datetime.now()) + 2629743
+        _time = int(datetime.timestamp(datetime.now())) + 2629743
 
         await _channel.send(f'**1.** {interaction.user.mention} | `{interaction.user}` | `{interaction.user.id}`\n' \
                             f'**2.** {role.name}\n' \
