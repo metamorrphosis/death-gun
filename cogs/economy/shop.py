@@ -64,7 +64,7 @@ class ShopCog(commands.Cog):
             )
         ]
 
-        await ctx.reply(embeds = _embeds)
+        await ctx.reply(embeds = _embeds, view = ShopSelectMenuView)
         '''
         TODO:
 
