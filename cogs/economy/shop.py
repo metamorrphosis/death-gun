@@ -273,7 +273,7 @@ class CustomRoleModal(discord.ui.Modal):
         )
 
     async def callback(self, interaction):
-        _role = await ctx.guild.create_role(name = self.children[0].value)
+        _role = await interaction.guild.create_role(name = self.children[0].value)
         _channel = interaction.guild.get_channel(1080434155692752957)
         await _channel.send(f'**1.** {interaction.user.mention} | `{interaction.user}` | `{interaction.user.id}`' \
                             f'**2.** {_role.mention} | `{_role.id}`' \
