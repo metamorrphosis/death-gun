@@ -131,7 +131,7 @@ class ShopSelectMenuView(discord.ui.View):
             if member_bal < 249:
                 await interaction.response.send_message(f'У вас нету столько донаткоинов\n' \
                                                         f'Ваш текущий баланс: **{member_bal}{_currency}**\n' \
-                                                        f'Гильдия стоит: **249{_currency}**\n'
+                                                        f'Гильдия стоит: **249{_currency}**\n',
                                                         ephemeral = True)
             
             await self.db.remove_money(member = interaction.user, value = 249)
