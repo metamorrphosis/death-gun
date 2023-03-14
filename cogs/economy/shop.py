@@ -110,6 +110,13 @@ class ShopSelectMenuView(discord.ui.View):
         custom_id = 'shop_select_menu',
         options = [
             discord.SelectOption(
+                value = 'casino',
+                label = 'Личный голосовой канал',
+                description = 'Ваш личный голосовой канал, доступ к которому есть у вас и ваших друзей',
+                emoji = discord.PartialEmoji.from_str('<:tochkaicon:1075458720659689533>')            
+            ),
+
+            discord.SelectOption(
                 value = 'guild',
                 label = 'Гильдия',
                 description = 'Своя гильдия',
