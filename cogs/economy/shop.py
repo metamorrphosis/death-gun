@@ -143,12 +143,14 @@ class CasinoModal(discord.ui.Modal):
 
         if not value.isdigit():
             return await interaction.response.send_message(f'Вы указали не положительное число.\n'
-                                                            'Пожалуйста попробуйте ещё раз указав число')
+                                                            'Пожалуйста попробуйте ещё раз указав число',
+                                                            ephemeral = True)
         
         value = int(value)
 
         if value == 0:
-            return await interaction.response.send_message(f'Число должно быть больше 0')
+            return await interaction.response.send_message(f'Число должно быть больше 0',
+                                                            ephemeral = True)
         
         if member_bal < self.children[0].value:
             await interaction.response.send_message(f'У вас нету столько донаткоинов\n' \
