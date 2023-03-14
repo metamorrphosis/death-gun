@@ -136,7 +136,7 @@ class CasinoModal(discord.ui.Modal):
         )
 
     async def callback(self, interaction):
-        member_bal = self.db.get_money(interaction.user)
+        member_bal = self.db.get_money(member = interaction.user)
         member_bal = member_bal["bal"]
 
         value = self.children[0].value
