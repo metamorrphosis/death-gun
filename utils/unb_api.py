@@ -19,11 +19,10 @@ async def update_money(*, member, amount, reason = None):
     if reason:
         payload["reason"] = reason
 
-    print(_unb_api_token)
-    print(type(_unb_api_token))
     print(url)
     print(headers)
     print(payload)
+
     async with aiohttp.ClientSession(headers = headers) as session:
         async with session.patch(url, data = payload) as resp:
             print(resp.status)
