@@ -162,7 +162,7 @@ class CasinoModal(discord.ui.Modal):
         await self.db.remove_money(member = interaction.user, value = _value)
         await update_money(
             member = interaction.user,
-            amount = _value,
+            amount = _value * 500,
             reason = 'Обмен донаткоинов'
         )
         
