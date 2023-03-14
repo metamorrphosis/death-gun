@@ -130,7 +130,7 @@ class ShopSelectMenuView(discord.ui.View):
             member_bal = member_bal["bal"]
 
             if member_bal < 249:
-                await interaction.response.send_message(f'У вас нету столько донаткоинов\n' \
+                return await interaction.response.send_message(f'У вас нету столько донаткоинов\n' \
                                                         f'Ваш текущий баланс: **{member_bal}{_currency}**\n' \
                                                         f'Гильдия стоит: **249{_currency}**\n',
                                                         ephemeral = True)
