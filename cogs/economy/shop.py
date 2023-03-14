@@ -61,7 +61,7 @@ class ShopCog(commands.Cog):
 
             get_embed(
                 title = '<:gicon2:1075458949089853610> Казино',
-                description = f'> <:tochkaicon:1075037704556904529>500<:dgsakura:1074019983010582550>  —  1{_currency}'
+                description = f'> <:tochkaicon:1075037704556904529>1000<:dgsakura:1074019983010582550>  —  1{_currency}'
             )
         ]
 
@@ -321,7 +321,7 @@ class CasinoModal(discord.ui.Modal):
         await self.db.remove_money(member = interaction.user, value = _value)
         await update_money(
             member = interaction.user,
-            amount = _value * 500,
+            amount = _value * 1000,
             reason = 'Обмен донаткоинов'
         )
         
