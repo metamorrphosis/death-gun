@@ -275,13 +275,13 @@ class CustomRoleModal(discord.ui.Modal):
     async def callback(self, interaction):
         _role = await interaction.guild.create_role(name = self.children[0].value)
         _channel = interaction.guild.get_channel(1080434155692752957)
-        await _channel.send(f'**1.** {interaction.user.mention} | `{interaction.user}` | `{interaction.user.id}`' \
-                            f'**2.** {_role.mention} | `{_role.id}`' \
-                            f'**3.** Покупка за донаткоины' \
+        await _channel.send(f'**1.** {interaction.user.mention} | `{interaction.user}` | `{interaction.user.id}`\n' \
+                            f'**2.** {_role.mention} | `{_role.id}`\n' \
+                            f'**3.** Покупка за донаткоины\n' \
                             f'**4.** —')
         
         await interaction.user.add_roles(_role)
-        await interaction.response.send_message('Роль создана успешно' \
+        await interaction.response.send_message('Роль создана успешно\n' \
                                                 'Для дальнейших изменений кастомки обратитесь в <#1074061219750748282>', 
                                                 ephemeral = True)
 
