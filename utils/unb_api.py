@@ -19,6 +19,8 @@ async def update_money(*, member, amount, reason = None):
     if reason:
         payload["reason"] = reason
 
+    print(_unb_api_token)
+    print(type(_unb_api_token))
     print(url)
     print(headers)
     print(payload)
