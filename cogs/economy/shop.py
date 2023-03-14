@@ -175,7 +175,7 @@ class CasinoModal(discord.ui.Modal):
                                                             ephemeral = True)
         
         if member_bal < _value:
-            await interaction.response.send_message(f'У вас нету столько донаткоинов\n' \
+            return await interaction.response.send_message(f'У вас нету столько донаткоинов\n' \
                                                     f'Ваш текущий баланс: **{member_bal}{_currency}**\n' \
                                                     f'Вы попытались обменять: **{_value}{_currency}**\n' \
                                                     f'Пожалуйста, введите суму меньше', 
