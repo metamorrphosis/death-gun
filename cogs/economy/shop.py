@@ -6,6 +6,7 @@ import discord
 from discord.ext import commands
 
 from utils import economy_db
+from utils.unb_api import update_money
 from utils import staff_roles as staff_roles_util
 
 _prefix = os.getenv('BOT_PREFIX')
@@ -86,6 +87,56 @@ class ShopCog(commands.Cog):
         у анбеливы апи есть, токен в .env уже написан через него обмен валют
         апи анбеливы юзать через aiohttp для асинка
         '''
+
+
+class ShopSelectMenuView(discord.ui.View):
+    def __init__(self):
+        super().__init__(
+            timeout = 90
+        )
+    
+    async def on_timeout(self):
+        for child in self.children:
+            child.disabled = True
+        
+        await self.message.edit(view = self)
+
+    @discord.ui.select(
+        placeholder = 'Выберите товар...',
+        min_values = 1,
+        max_values = 1,
+        custom_id = 'shop_select_menu',
+        options = [
+            discord.SelectOption(
+                value = 'casino',
+                label = 'Казино',
+                description = 'Монеты в боте UnbelievaBoat',
+                emoji = discord.PartialEmoji.from_str('<:tochkaicon:1075458720659689533>')            
+            ),
+        ]
+    )
+    async def select_callback(self, select, interaction):
+        if select.values[0] == 'casino':
+            await interaction.response.send_modal(CasinoModal())
+
+
+class CasinoModal(discord.ui.Modal):
+    def __init__(self) -> None:
+        super().__init__(
+            discord.ui.InputText(
+                label = 'Количество донаткоинов, которые вы хотите обменять',
+                placeholder = 'Пример: 50',
+                min_length = 1,
+                max_length = 25,
+                style = discord.InputTextStyle.short,
+                required = True,
+            ),
+            title = 'Казино'
+        )
+
+    async def callback(self, interaction):
+        await interaction.response.send_message('a')
+
 
 def setup(bot):
     bot.add_cog(ShopCog(bot))
