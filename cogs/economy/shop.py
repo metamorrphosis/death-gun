@@ -152,7 +152,7 @@ class CasinoModal(discord.ui.Modal):
             return await interaction.response.send_message(f'Число должно быть больше 0',
                                                             ephemeral = True)
         
-        if member_bal < self.children[0].value:
+        if member_bal < value:
             await interaction.response.send_message(f'У вас нету столько донаткоинов\n' \
                                                     f'Ваш текущий баланс: **{member_bal}{_currency}**\n' \
                                                     f'Вы попытались обменять: **{value}{_currency}**\n' \
