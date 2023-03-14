@@ -3,6 +3,7 @@ import aiohttp
 from datetime import datetime
 
 import discord
+import shortuuid
 from discord.ext import commands
 
 from utils import economy_db
@@ -119,12 +120,19 @@ class ShopSelectMenuView(discord.ui.View):
                 label = 'Казино',
                 description = 'Монеты в боте UnbelievaBoat',
                 emoji = discord.PartialEmoji.from_str('<:tochkaicon:1075458720659689533>')            
+            ),
+            discord.SelectOption(
+                value = 'support',
+                label = 'Саппорт',
+                description = 'Начальная роль модерации',
+                emoji = discord.PartialEmoji.from_str('<:tochkaicon:1075458720659689533>')            
             )
         ]
     )
     async def select_callback(self, select, interaction):
         if select.values[0] == 'casino':
             await interaction.response.send_modal(CasinoModal())
+        
         elif select.values[0] == 'guild':
             member_bal = await self.db.get_money(member = interaction.user)
             member_bal = member_bal["bal"]
@@ -139,6 +147,22 @@ class ShopSelectMenuView(discord.ui.View):
             await interaction.user.add_roles(interaction.guild.get_role(1074035881297596417))
             await interaction.response.send_message('Вы успешно приобрели гильдию\n' \
                                                     'Для создания гильдии используйте команду `?create`', 
+                                                    ephemeral = True)
+
+        elif select.values[0] == 'support':
+            member_bal = await self.db.get_money(member = interaction.user)
+            member_bal = member_bal["bal"]
+
+            if member_bal < 349:
+                return await interaction.response.send_message(f'У вас нету столько донаткоинов\n' \
+                                                        f'Ваш текущий баланс: **{member_bal}{_currency}**\n' \
+                                                        f'Саппорт стоит: **349{_currency}**\n',
+                                                        ephemeral = True)
+            
+            await self.db.remove_money(member = interaction.user, value = 349)
+            await interaction.response.send_message(f'ID покупки: `{shortuuid.ShortUUID().random(length=22)}`' \
+                                                    f'Вы успешно приобрели саппорта\n' \
+                                                    f'Для получения роли откройте тикет и отправьте скриншот с этим сообщением', 
                                                     ephemeral = True)
 
 
