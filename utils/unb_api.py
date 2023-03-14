@@ -19,6 +19,9 @@ async def update_money(*, member, amount, reason = None):
     if reason:
         payload["reason"] = reason
 
+    print(url)
+    print(headers)
+    print(payload)
     async with aiohttp.ClientSession(headers = headers) as session:
         await session.post(url, data = payload)
 
