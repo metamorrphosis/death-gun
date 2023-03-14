@@ -282,9 +282,9 @@ class CustomRoleModal(discord.ui.Modal):
         
         await interaction.user.add_roles(_role)
         start_role = interaction.guild.get_role(1074024883719254127)
-        position = start_role - 1
+        position = start_role.position - 1
         await _role.edit(position = position)
-        
+
         await interaction.response.send_message('Роль создана успешно\n' \
                                                 'Для дальнейших изменений кастомки обратитесь в <#1074061219750748282>', 
                                                 ephemeral = True)
