@@ -3,8 +3,8 @@ import aiohttp
 
 _unb_api_token = os.getenv('UNB_API_TOKEN')
 
-async def update_money(user, amount, _reason = None):
-    url = f'https://unbelievaboat.com/api/v1/guilds/{user.guild.id}/users/{user.id}'
+async def update_money(*, member, amount, _reason = None):
+    url = f'https://unbelievaboat.com/api/v1/guilds/{member.guild.id}/users/{member.id}'
     
     headers = {
         "accept": "application/json",

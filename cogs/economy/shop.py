@@ -139,27 +139,34 @@ class CasinoModal(discord.ui.Modal):
         member_bal = await self.db.get_money(member = interaction.user)
         member_bal = member_bal["bal"]
 
-        value = self.children[0].value
+        _value = self.children[0].value
 
-        if not value.isdigit():
+        if not _value.isdigit():
             return await interaction.response.send_message(f'Вы указали не положительное число.\n'
                                                             'Пожалуйста попробуйте ещё раз указав число',
                                                             ephemeral = True)
         
-        value = int(value)
+        _value = int(_value)
 
-        if value == 0:
+        if _value == 0:
             return await interaction.response.send_message(f'Число должно быть больше 0',
                                                             ephemeral = True)
         
-        if member_bal < value:
+        if member_bal < _value:
             await interaction.response.send_message(f'У вас нету столько донаткоинов\n' \
                                                     f'Ваш текущий баланс: **{member_bal}{_currency}**\n' \
-                                                    f'Вы попытались обменять: **{value}{_currency}**\n' \
+                                                    f'Вы попытались обменять: **{_value}{_currency}**\n' \
                                                     f'Пожалуйста, введите суму меньше', 
                                                     ephemeral = True)
         
-        await interaction.response.send_message('a')
+        await self.db.remove_money(member = interaction.user, value = _value)
+        await update_money(
+            member = interaction.user,
+            amount = _value,
+            reason = 'Обмен донаткоинов'
+        )
+        
+        await interaction.response.send_message('Обмен произошел успешно', ephemeral = True)
 
 
 def setup(bot):
