@@ -190,27 +190,27 @@ class ShopSelectMenuView(discord.ui.View):
     async def select_callback(self, select, interaction):
         if select.values[0] == '1054133641220980838':
             await self.temp_role(interaction = interaction,
-                                role = interaction.guild.get_role(select.values[0]),
+                                role = interaction.guild.get_role(int(select.values[0])),
                                 value = 399)
 
         elif select.values[0] == '1054133671839420526':
             await self.temp_role(interaction = interaction,
-                                role = interaction.guild.get_role(select.values[0]),
+                                role = interaction.guild.get_role(int(select.values[0])),
                                 value = 299)
 
         elif select.values[0] == '1054134326394110053':
             await self.temp_role(interaction = interaction,
-                                role = interaction.guild.get_role(select.values[0]),
+                                role = interaction.guild.get_role(int(select.values[0])),
                                 value = 219)
 
         elif select.values[0] == '1054134307280662558':
             await self.temp_role(interaction = interaction,
-                                role = interaction.guild.get_role(select.values[0]),
+                                role = interaction.guild.get_role(int(select.values[0])),
                                 value = 169)
 
         elif select.values[0] == '1054134320962474054':
             await self.temp_role(interaction = interaction,
-                                role = interaction.guild.get_role(select.values[0]),
+                                role = interaction.guild.get_role(int(select.values[0])),
                                 value = 89)
         
         elif select.values[0] == 'custom_role':
