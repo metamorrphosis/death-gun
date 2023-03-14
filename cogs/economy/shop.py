@@ -122,6 +122,7 @@ class ShopSelectMenuView(discord.ui.View):
 
 class CasinoModal(discord.ui.Modal):
     def __init__(self) -> None:
+        self.db = economy_db.EconomyDB()
         super().__init__(
             discord.ui.InputText(
                 label = 'Количество донаткоинов на обмен',
@@ -135,6 +136,18 @@ class CasinoModal(discord.ui.Modal):
         )
 
     async def callback(self, interaction):
+        member_bal = self.db.get_money(interaction.user)
+        member_bal = member_bal["bal"]
+
+        value = self.children[0].value
+
+        if member_bal < self.children[0].value:
+            await interaction.response.send_message(f'У вас нету столько донаткоинов\n'\ 
+                                                    f'Ваш текущий баланс: **{member_bal}{_currency}**\n' \
+                                                    f'Вы попытались обменять: **{value}{_currency}**\n' \
+                                                    f'Пожалуйста, введите суму меньше', 
+                                                    ephemeral = True)
+        
         await interaction.response.send_message('a')
 
 
