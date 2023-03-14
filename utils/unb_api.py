@@ -3,7 +3,7 @@ import aiohttp
 
 _unb_api_token = os.getenv('UNB_API_TOKEN')
 
-async def update_money(*, member, amount, _reason = None):
+async def update_money(*, member, amount, reason = None):
     url = f'https://unbelievaboat.com/api/v1/guilds/{member.guild.id}/users/{member.id}'
     
     headers = {
@@ -17,7 +17,7 @@ async def update_money(*, member, amount, _reason = None):
     }
 
     if reason:
-        payload["reason"] = _reason
+        payload["reason"] = reason
 
     async with aiohttp.ClientSession(headers = headers) as session:
         await session.post(url, data = payload)
