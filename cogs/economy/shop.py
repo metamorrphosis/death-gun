@@ -136,11 +136,20 @@ class CasinoModal(discord.ui.Modal):
         )
 
     async def callback(self, interaction):
-        member_bal = self.db.get_money(member = interaction.user)
+        member_bal = await self.db.get_money(member = interaction.user)
         member_bal = member_bal["bal"]
 
         value = self.children[0].value
 
+        if not value.isdigit():
+            return await interaction.response.send_message(f'Вы указали не положительное число.\n'
+                                                            'Пожалуйста попробуйте ещё раз указав число')
+        
+        value = int(value)
+
+        if value == 0:
+            return await interaction.response.send_message(f'Число должно быть больше 0')
+        
         if member_bal < self.children[0].value:
             await interaction.response.send_message(f'У вас нету столько донаткоинов\n' \
                                                     f'Ваш текущий баланс: **{member_bal}{_currency}**\n' \
