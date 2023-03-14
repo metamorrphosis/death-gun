@@ -124,7 +124,7 @@ class CasinoModal(discord.ui.Modal):
     def __init__(self) -> None:
         super().__init__(
             discord.ui.InputText(
-                label = 'Количество донаткоинов, которые вы хотите обменять',
+                label = 'Количество донаткоинов на обмен',
                 placeholder = 'Пример: 50',
                 min_length = 1,
                 max_length = 25,
