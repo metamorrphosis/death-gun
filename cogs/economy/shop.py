@@ -53,8 +53,8 @@ class ShopCog(commands.Cog):
             get_embed(
                 title = '<:gicon2:1075458949089853610> Другое',
                 description = f'> <:tochkaicon:1075037704556904529><@&1074035806429249606> — 99{_currency} / навсегда\n' \
-                              f'> <:tochkaicon:1075037704556904529><@&1074035980174106706> — 249{_currency} / навсегда\n' \
-                              f'> <:tochkaicon:1075037704556904529><@&1074035881297596417> — 149{_currency} / навсегда\n' \
+                              f'> <:tochkaicon:1075037704556904529><@&1074035980174106706> — 149{_currency} / навсегда\n' \
+                              f'> <:tochkaicon:1075037704556904529><@&1074035881297596417> — 249{_currency} / навсегда\n' \
                               f'> <:tochkaicon:1075037704556904529><@&1053765580701831168> — 349{_currency} / до снятия'
             ),
 
@@ -128,13 +128,13 @@ class ShopSelectMenuView(discord.ui.View):
             member_bal = await self.db.get_money(member = interaction.user)
             member_bal = member_bal["bal"]
 
-            if member_bal < 149:
+            if member_bal < 249:
                 await interaction.response.send_message(f'У вас нету столько донаткоинов\n' \
                                                         f'Ваш текущий баланс: **{member_bal}{_currency}**\n' \
-                                                        f'Гильдия стоит: **149{_currency}**\n'
+                                                        f'Гильдия стоит: **249{_currency}**\n'
                                                         ephemeral = True)
             
-            await self.db.remove_money(member = interaction.user, value = 149)
+            await self.db.remove_money(member = interaction.user, value = 249)
             await interaction.user.add_roles(interaction.guild.get_role(1074035881297596417))
             await interaction.response.send_message('Вы успешно приобрели гильдию\n' \
                                                     'Для создания гильдии используйте команду `?create`', 
