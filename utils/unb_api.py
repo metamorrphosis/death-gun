@@ -1,4 +1,5 @@
 import os
+import json
 import aiohttp
 
 _unb_api_token = os.getenv('UNB_API_TOKEN')
@@ -23,9 +24,8 @@ async def update_money(*, member, amount, reason = None):
     print(headers)
     print(payload)
 
-    testp = f'{payload}'
     async with aiohttp.ClientSession(headers = headers) as session:
-        async with session.patch(url, data = b'{"bank": 50}') as resp:
+        async with session.patch(url, data = json.dumps(payload).encode('utf-8')) as resp:
             print(resp.status)
             print(await resp.text())
 
