@@ -91,6 +91,7 @@ class ShopCog(commands.Cog):
 
 class ShopSelectMenuView(discord.ui.View):
     def __init__(self):
+        self.db = economy_db.EconomyDB()
         super().__init__(
             timeout = 90
         )
