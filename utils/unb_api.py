@@ -21,3 +21,5 @@ async def update_money(*, member, amount, reason = None):
 
     async with aiohttp.ClientSession(headers = headers) as session:
         await session.post(url, data = payload)
+
+    return 0
