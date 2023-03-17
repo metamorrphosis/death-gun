@@ -198,7 +198,7 @@ class AnticrashEventsCog2(commands.Cog):
                 except:
                     pass
                 
-                channel = guild.get_channel(996360133288415262)
+                channel = guild.get_channel(self.admin_channel)
                 await channel.send(f'**Попытка краша**\nТолько что участник {user.mention} (`{user}`) пытался крашнуть сервер путем массового кика/бана участников. Участник был забанен')
 
                 self.cd_bans[str(user.id)]["last_update"] = 0
