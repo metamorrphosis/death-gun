@@ -95,7 +95,7 @@ class StartTicketView(discord.ui.View):
         label = 'Открыть тикет'
     )
     async def callback(self, button, interaction):
-        await interaction.response.defer(ephemeral = True, invisible = False)
+        
         async for i in self.db.cluster.tickets.tickets_list.find():
             if i["_id"] == 0:
                 continue
@@ -122,11 +122,12 @@ class StartTicketView(discord.ui.View):
 
         ticket_channel = await ticket_category.create_text_channel(name = f'тикет-{ticket_id}', overwrites = ticket_overwrites)
         
+        await interaction.response.send_message(f'Тикет успешно создан — {ticket_channel.mention}', ephemeral = True)
+        
         mention = await ticket_channel.send(self.mention_message)
         embticket = discord.Embed().from_dict({'fields': [], 'color': 15645576, 'type': 'rich', 'description': '<:tochkaicon:1075458720659689533>Здравствуйте! Вы попали в свой тикет. Модерация поможет вам в кротчайшие сроки. Пока что можете написать цель создания тикета.\n<:tochkaicon:1075458720659689533>Примечание:\n<:tochkaicon:1075458720659689533>За попытки обмана администрации/модерации выдаётся предупреждение', 'title': '<:gicon2:1075458949089853610> Открытый тикет'})
         await mention.delete() 
         await ticket_channel.send(f'{interaction.user.mention} (`{interaction.user}`)', embed = embticket, view = OpenedTicketView())
-        await interaction.followup.send(f'Тикет успешно создан — {ticket_channel.mention}', ephemeral = True)
 
         
 class TicketsCog(commands.Cog):
