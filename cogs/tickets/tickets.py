@@ -100,7 +100,7 @@ class StartTicketView(discord.ui.View):
             if i["_id"] == 0:
                 continue
             if i["author"] == interaction.user.id:
-                return await interaction.followup.send('Нельзя открыть более 1 тикета за раз', ephemeral = True)
+                return await interaction.response.send_message('Нельзя открыть более 1 тикета за раз', ephemeral = True)
         
         ticket_category = interaction.guild.get_channel(1074053323411431495)
 
