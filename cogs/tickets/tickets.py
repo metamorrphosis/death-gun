@@ -38,11 +38,12 @@ class OpenedTicketView(discord.ui.View):
         if len(check_roles) == 0:
             return await interaction.response.send_message(f'Эта кнопка доступна только для следующих ролей:\n {roles_mention}', ephemeral = True)
         
-        await interaction.response.defer(ephemeral = False, invisible = False)
         self.children[0].disabled = True
         await interaction.message.edit(view = self)
         await interaction.channel.set_permissions(interaction.user, send_messages=True, read_messages=True)
-
+        
+        await interaction.response.send_message(f'{interaction.user.mention} (`{interaction.user}`) Будет обслуживать Ваш тикет')
+        
         ticket_overwrites = {}
         staff_roles = staff_roles_util.Roles(interaction.guild).get_all_staff_roles()[:6]
     
@@ -50,8 +51,6 @@ class OpenedTicketView(discord.ui.View):
             ticket_channel = interaction.channel,
             who_claimed = interaction.user
         )
-        
-        await interaction.followup.send(f'{interaction.user.mention} (`{interaction.user}`) Будет обслуживать Ваш тикет')
         
         for i in staff_roles:
             await interaction.channel.set_permissions(i, read_messages = True, send_messages = False)
