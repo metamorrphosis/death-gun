@@ -75,6 +75,8 @@ class AnticrashEventsCog(commands.Cog):
         perms_difference = [x for x in after.permissions if x not in before.permissions]
         print(perms_difference)
         print(type(perms_difference[0]))
+        print(perms_before)
+        print(type(perms_before))
         if not perms_difference:
             return
        
