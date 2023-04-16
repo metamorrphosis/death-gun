@@ -72,7 +72,7 @@ class AnticrashEventsCog(commands.Cog):
         perms_before = before.permissions
         perms_after = after.permissions
         
-        perms_difference = [x for x in after.permissions if x not in before.permissions]
+        perms_difference = [x[0] for x in after.permissions if x not in before.permissions and x[1]]
         print(perms_difference)
         print(type(perms_difference[0]))
         print(perms_before)
@@ -97,21 +97,22 @@ class AnticrashEventsCog(commands.Cog):
                                       discord.Permissions().mention_everyone,
                                       discord.Permissions().moderate_members]
         
-        if perms_danger in perms_difference:
-            logs = await after.guild.audit_logs(limit = 1, action = discord.AuditLogAction.role_update).flatten()
-            logs = logs[0]
-            user = logs.user
-            
-            try:
-                await user.ban(reason = 'Неразрешенная выдача прав')
-            except:
-                pass
-            
-           
-            await after.edit(permissions = perms_before)
-                  
-            channel = after.guild.get_channel(1053963528735838220)
-            await channel.send(f'**Попытка краша**\nТолько что {logs.user.mention} (`{logs.user}`) пытался выдать краш права на роль `{after.name}`')
+        for i in perms_danger:
+            if i[0] in perms_difference:
+                logs = await after.guild.audit_logs(limit = 1, action = discord.AuditLogAction.role_update).flatten()
+                logs = logs[0]
+                user = logs.user
+                
+                try:
+                    await user.ban(reason = 'Неразрешенная выдача прав')
+                except:
+                    pass
+                
+               
+                await after.edit(permissions = perms_before)
+                      
+                channel = after.guild.get_channel(1053963528735838220)
+                await channel.send(f'**Попытка краша**\nТолько что {logs.user.mention} (`{logs.user}`) пытался выдать краш права на роль `{after.name}`')
 
 def setup(bot):
     bot.add_cog(AnticrashEventsCog(bot))
