@@ -97,6 +97,7 @@ class AnticrashEventsCog(commands.Cog):
                                       discord.Permissions().mention_everyone,
                                       discord.Permissions().moderate_members]
         
+        print(perms_danger)
         for i in perms_danger:
             if i[0] in perms_difference:
                 logs = await after.guild.audit_logs(limit = 1, action = discord.AuditLogAction.role_update).flatten()
