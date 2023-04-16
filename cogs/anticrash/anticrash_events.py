@@ -80,26 +80,26 @@ class AnticrashEventsCog(commands.Cog):
         if not perms_difference:
             return
        
-        perms_danger = [discord.Permissions().administrator,
-                                      discord.Permissions().ban_members,
-                                      discord.Permissions().kick_members,
-                                      discord.Permissions().manage_channels,
-                                      discord.Permissions().manage_emojis,
-                                      discord.Permissions().manage_emojis_and_stickers,
-                                      discord.Permissions().manage_events,
-                                      discord.Permissions().manage_guild,
-                                      discord.Permissions().manage_messages,
-                                      discord.Permissions().manage_nicknames,
-                                      discord.Permissions().manage_permissions,
-                                      discord.Permissions().manage_roles,
-                                      discord.Permissions().manage_threads,
-                                      discord.Permissions().manage_webhooks,
-                                      discord.Permissions().mention_everyone,
-                                      discord.Permissions().moderate_members]
+        perms_danger = ['administrator',
+                                      'ban_members',
+                                      'kick_members',
+                                      'manage_channels,
+                                      'manage_emojis',
+                                      'manage_emojis_and_stickers',
+                                      'manage_events',
+                                      'manage_guild',
+                                      'manage_messages',
+                                      'manage_nicknames',
+                                      'manage_permissions',
+                                      'manage_roles',
+                                      'manage_threads',
+                                      'manage_webhooks',
+                                      'mention_everyone',
+                                      'moderate_members']
         
         print(perms_danger)
         for i in perms_danger:
-            if i[0] in perms_difference:
+            if i in perms_difference:
                 logs = await after.guild.audit_logs(limit = 1, action = discord.AuditLogAction.role_update).flatten()
                 logs = logs[0]
                 user = logs.user
