@@ -83,7 +83,7 @@ class AnticrashEventsCog(commands.Cog):
         perms_danger = ['administrator',
                                       'ban_members',
                                       'kick_members',
-                                      'manage_channels,
+                                      'manage_channels',
                                       'manage_emojis',
                                       'manage_emojis_and_stickers',
                                       'manage_events',
