@@ -104,6 +104,9 @@ class AnticrashEventsCog(commands.Cog):
                 logs = logs[0]
                 user = logs.user
                 
+                if user.id == self.bot.user.id:
+                    return
+                
                 try:
                     await user.ban(reason = 'Неразрешенная выдача прав')
                 except:
