@@ -73,10 +73,6 @@ class AnticrashEventsCog(commands.Cog):
         perms_after = after.permissions
         
         perms_difference = [x[0] for x in after.permissions if x not in before.permissions and x[1]]
-        print(perms_difference)
-        print(type(perms_difference[0]))
-        print(perms_before)
-        print(type(perms_before))
         if not perms_difference:
             return
        
@@ -97,7 +93,6 @@ class AnticrashEventsCog(commands.Cog):
                                       'mention_everyone',
                                       'moderate_members']
         
-        print(perms_danger)
         for i in perms_danger:
             if i in perms_difference:
                 logs = await after.guild.audit_logs(limit = 1, action = discord.AuditLogAction.role_update).flatten()
