@@ -22,6 +22,7 @@ class AnticrashEventsCog(commands.Cog):
                 try:
                     await member_add.ban(reason = 'Добавление не верефицированого бота')
                     await member.ban(reason = 'Не верифицированый бот')
+                    
                 except Exception as e:
                     print(e)
                 
@@ -52,7 +53,7 @@ class AnticrashEventsCog(commands.Cog):
             logs = logs[0]
             user = logs.user
             
-            if user.id not in [659728796437708800, 971749397262127144, 1076195979751067771, 983675453988544532, 1075867179137900584, 310848622642069504]:
+            if user.id not in [659728796437708800, 971749397262127144, 1076195979751067771, 983675453988544532, 1075867179137900584]:
                 try:
                     await user.ban(reason = 'Неразрешенная выдача прав администратора')
                 except:
