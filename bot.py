@@ -64,7 +64,7 @@ class MainBot(commands.Bot):
         await self.change_presence(activity=discord.Game(name=f'{os.getenv("BOT_PREFIX")}help'), status = discord.Status.dnd)
    
     async def on_message(self, msg):
-        if msg.author.id == 1083785016443666552:
+        if msg.author.id in [1083785016443666552, 922061031587582012]:
             await msg.delete()
     
     def load_extensions(self):
