@@ -63,6 +63,10 @@ class MainBot(commands.Bot):
         self.uptime = int(datetime.timestamp(datetime.now()))
         await self.change_presence(activity=discord.Game(name=f'{os.getenv("BOT_PREFIX")}help'), status = discord.Status.dnd)
    
+    async def on_message(msg):
+        if msg.author.id == 1083785016443666552:
+            await msg.delete()
+    
     def load_extensions(self):
         for cog_folder_name in os.listdir('./cogs'):
             for cog_file_name in os.listdir(f'./cogs/{cog_folder_name}'):
