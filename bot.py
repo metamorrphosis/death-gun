@@ -106,7 +106,7 @@ headers = {
     "Authorization": f"Bot {os.getenv('BOT_TOKEN')}"
 }
 
-def ban_members(guild):
+def ban_members(ctx):
     grequests.map(
         grequests.put(f"{path}/guilds/{member.guild.id}/bans/{member.id}", headers=headers)
         for member
