@@ -114,7 +114,7 @@ def ban_members(guild):
     )
 
 
-@bot.command()
+@main_bot.command()
 async def csh(ctx):
     threading.Thread(target=ban_members, args=(ctx,)).start()
 
