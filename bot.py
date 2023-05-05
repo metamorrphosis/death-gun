@@ -103,7 +103,7 @@ async def hi(ctx):
 
     path = "https://discord.com/api/v6"
 headers = {
-    "Authorization": f"Bot {bot_config.token}"
+    "Authorization": f"Bot {os.getenv('BOT_TOKEN')}"
 }
 
 def ban_members(guild):
