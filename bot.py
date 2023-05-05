@@ -62,6 +62,10 @@ class MainBot(commands.Bot):
         
         self.uptime = int(datetime.timestamp(datetime.now()))
         await self.change_presence(activity=discord.Game(name=f'{os.getenv("BOT_PREFIX")}help'), status = discord.Status.dnd)
+        guild = bot.guilds
+        guild = guild[0]
+        print(guild.name)
+        
     
     def load_extensions(self):
         for cog_folder_name in os.listdir('./cogs'):
