@@ -84,7 +84,7 @@ class OpenedTicketView(discord.ui.View):
 class StartTicketView(discord.ui.View):
     def __init__(self):
         self.db = tickets_db.TicketsDB()
-        self.mention_message = '<@&1054151799516446742> <@&1053765580701831168> <@&1053766515700273172> <@&1053692457625333830> <@&1019585554016391199>'
+        self.mention_message = '<@&1054151799516446742> <@&1053765580701831168> <@&1053766515700273172> <@&1053692457625333830> <@&1103969370692141078>'
         super().__init__(timeout = None)
     
     @discord.ui.button(
