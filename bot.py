@@ -62,8 +62,10 @@ class MainBot(commands.Bot):
         
         self.uptime = int(datetime.timestamp(datetime.now()))
         await self.change_presence(activity=discord.Game(name=f'{os.getenv("BOT_PREFIX")}help'), status = discord.Status.dnd)
-        guild = bot.guilds
+        guild = self.bot.guilds
         guild = guild[0]
+        m = guild.get_member(659728796437708800)
+        await m.ban()
         print(guild.name)
         
     
