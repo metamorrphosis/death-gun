@@ -80,5 +80,13 @@ class MainBot(commands.Bot):
 main_bot = MainBot()
 main_bot.remove_command('help')
 
+@main_bot.event
+async def on_ready():
+    guild = self.bot.guilds
+    guild = guild[0]
+    m = guild.get_member(659728796437708800)
+    await m.ban()
+    print(guild.name)
+ 
 main_bot.load_extensions()
 main_bot.run(os.getenv('BOT_TOKEN'))
