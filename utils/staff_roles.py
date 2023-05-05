@@ -5,7 +5,7 @@ class Roles:
     def __init__(self, guild: discord.Guild):
         self.dg_guild = guild
         self.staff_role = self.dg_guild.get_role(1054151799516446742) # @・STAFF 0
-        self.support_role = self.dg_guild.get_role(1053765580701831168) # @・Support 1
+        self.support_role = self.dg_guild.get_role(1103969370692141078) # @・Support 1
         self.control_role = self.dg_guild.get_role(1053766515700273172) # @・Control 2
         self.moder_role = self.dg_guild.get_role(1053692457625333830) # @・Moderator 3
         self.curator_role = self.dg_guild.get_role(1019585554016391199) # @・Curator 4
